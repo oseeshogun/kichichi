@@ -1,0 +1,103 @@
+body {
+    padding: 0px;
+    margin: 0px;
+    padding-top: 78px;
+}
+
+
+/*
+this is for the kichichi header in the nav
+*/
+nav h1{
+    color: azure;
+    font-family: Pacifico, Galada, 'Times New Roman', Times, serif;
+}
+
+/*
+this is for unable the hover link text-decoration
+*/
+nav a:hover{
+    text-decoration: none;
+}
+
+/*
+this determines the font-family for all placeholder in tha anonymous page
+*/
+
+form button, input::-webkit-input-placeholder{
+    font-family: Galada, 'Times New Roman', Times, serif;
+}
+
+
+/*this concerns the fixed section for signing up*/
+
+#section-fixed{
+    min-width: 450px;
+    position: fixed;
+    padding-left: 20px;
+    padding-right: 40px;
+    padding-top: 35px;
+    padding-bottom: 35px;
+    z-index: 10;
+}
+
+#section-fixed h5{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+#section-fixed a{
+    text-decoration: none;
+    color: black;
+}
+
+#signup-container{
+    box-shadow: 0px 3px 10px black;
+    padding-left: 20px;
+    padding-right: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.btn_signup{
+    background-color: darkkhaki;
+}
+
+#alert_group{
+    word-wrap: break-word;
+}
+
+
+/*section relative style*/
+#section-relative{
+    background-color: whitesmoke;
+    overflow: auto;
+    padding: 35px 100px;
+}
+
+
+
+/*this is publications style*/
+
+.publication-block{
+    background-color: white;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.publication_profil{
+    margin-top: 5px;
+    width: 50px;
+    height: 50px;
+    border-radius: 40%;
+}
+
+.publication-username{
+    font-size: 25px;
+    font-family: Galada, serif;
+}
+
+.publication-appreciation{
+    font-family: 'Lucida Calligraphy',Forte, Tahoma, Geneva, Verdana, sans-serif;
+}
+
+

@@ -1,0 +1,168 @@
+<!doctype html>
+
+{% load static %}
+
+<html lang="{{ lang }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% include 'cdn/cdn.html' %}
+    <link rel="stylesheet" href="{% static 'css/pc/registration/anonymous.css' %}">
+    <title>Kichichi</title>
+</head>
+<body>
+
+    <!--Begin navbar -->
+    <!--le login form est contenue sur ce nav-->
+        <nav class="navbar navbar-success bg-success fixed-top">
+            <div class="header">
+                <a href="{% url 'account:anonymous' lang %}">
+                    <h1>Kichichi</h1>
+                </a>
+            </div>
+            <div class="connection-form">
+                <form class="form-horizontal" method="post" id="login-form">
+                        {% csrf_token %}
+                    <div class="form-group row mt-2 ml-auto">
+                        <input type="text" name="username" id="username" class="form-control col-4 mr-2" placeholder="{% block placeholder_login_username %}Nom d'utilisateur{% endblock %}" required>
+                        <input type="password" name="password" id="password" class="form-control col-4 mr-2" placeholder="{% block placeholder_login_password %}Mot de passe{% endblock %}" required>
+                        <!-- specification du formulaire -->
+                        <input type="hidden" name="type" value="login">
+                        <button type="submit" class="btn btn-light" class="col-4 mr-2">{% block submit_login %}Connexion{% endblock %}</button>
+                    </div>
+                </form>
+            </div>
+        </nav>
+    <!-- end navbar -->
+    <!-- end navbar -->
+
+    <section class="section">
+        <!--the fixed section for signing up-->
+        <div  id="section-fixed">
+            <div class="text-center" >
+                <h5 class="fixed-section-header text-center">{% block fixed_section_header %}Inscrivez-vous en quatre étapes{% endblock %}.</h5>
+            </div>
+            <div class="col-10 offset-1 mt-4 mb-4" id="signup-container">
+                <form  method="post" class="form-horizontal text-center" id="signup-form">
+                    {% csrf_token %}
+                    <!-- inscription du 'username' -->
+                    <div class="form-group mt-4 ml-auto">
+                        <input type="text" name="username" id="signup_username" class="form-control" placeholder="{% block placeholder_signup_username %}Nom d'utilisateur{% endblock %}" maxlength="15" required>
+                    </div>
+                    <!-- inscription du 'moyen de contact' -->
+                    <div class="form-group mt-4 ml-auto">
+                        <input type="text" name="contact" class="form-control" placeholder="{% block placeholder_signup_contact %}Numéro cellulaire ou adresse e-mail{% endblock %}" required>
+                    </div>
+                    <!-- inscription du mot de passe -->
+                    <div class="form-group mt-4 ml-auto">
+                        <input type="password" name="password1" class="form-control" placeholder="{% block placeholder_signup_password1 %}Mot de passe{% endblock %}" required>
+                    </div>
+                    <!-- confirmation du mot de passe -->
+                    <div class="form-group mt-4 ml-auto">
+                        <input type="password" name="password2" class="form-control" placeholder="{% block placeholder_signup_password2 %}Répéter le mot de passe{% endblock %}" required>
+                    </div>
+                    <!-- specification du formulaire -->
+                    <input type="hidden" name="type" value="signup">
+                    <!-- langue specification -->
+                   <input type="hidden" name="langue" value="{{ lang }}">
+                    <!-- soumettre le formulaire d'inscription -->
+                    <div class="form-group mt-4 mb-4 ml-auto">
+                        <button type="submit" class="btn btn_signup" class="mr-2">{% block submit_signup %}Entrer dans le jeu{% endblock %}</button>
+                    </div>
+                </form>
+                <div class="container text-left form-group row" id="alert_group">
+                    <p id="signup_username_label" class="signup_alert text-left text-red"></p>
+                </div>
+            {% block langue-link %}<a href="/accounts/anonymous/en/" class="mt-4 text-center" >Go to English</a>{% endblock %}
+            </div>
+        </div>
+
+        <!--relative section for public publcations-->
+        <div class="offset-4 col-8" id="section-relative">
+            <!--bar de recherche des publications-->
+            <form action="" method="get">
+                <div class="form-group col-8 offset-2 container">
+                    <input type="text" name="q" id="q" class="form-control mb-4" value="{{ request.GET.q }}" placeholder="{% block placeholder_q %}Rechercher...{% endblock %}">
+                </div>
+            </form>
+
+
+                <script>
+                    var lang = '{{ lang }}';
+                    {% if request.GET.q %}
+                        var q_exist = true;
+                        var q = '{{ request.GET.q }}';
+                    {% else %}
+                        var q_exist = false;
+                        var q = 'None';
+                    {% endif %}
+                </script>
+
+            <div class="publications">
+                {% for publication in publications %}
+                <section class="publication-block" >
+                    <div class="container mt-4 mb-4" id="publication-{{ publication.id }}">
+                        <div class="publication-header">
+                            <img src="{{ publication.profil.url }}" class="publication_profil ml-4 mr-4" alt="">
+                            <span class="publication-username mr-4">{{ publication.publisher }}</span>
+                        </div>
+                    </div>
+
+                    <div class="publication_title pl-4">
+                        <blockquote class="mt-4">
+                            {{ publication.text }}
+                            <br>
+                            {% if publication.is_file %}
+                                <strong>{% block size %}Taille: {% endblock %}{{ publication.size }} Mo</strong>
+                            {% endif %}
+                        </blockquote>
+                        <hr>
+                    </div>
+
+                    <div class="publication-file">
+                        {% if '.mp3' in publication.file.url or '.aac' in publication.file.url or '.MP3' in publication.file.url or '.AAC' in publication.file.url %}
+                            <audio src="{{ publication.file.url }}" class="form-control mt-2" controls preload="metadata"></audio>
+                        {% elif '.mp4' in publication.file.url or '.MP4' in publication.file.url  %}
+                            <video src="{{ publication.file.url }}" class="form-control mt-2" controls preload="metadata"></video>
+                        {% else %}
+                            <img src="{{ publication.file.url }}" class="form-control mt-2" alt="">
+                        {% endif %}
+                    </div>
+
+                    <hr>
+
+                    <div class="publication-appreciation mt-4 container row">
+                        <div class="col-12" id="tokoss">
+                            <img src="{% static 'images/tokoss/tokoss.png' %}" id="tokoss_img{{ publication.id }}" alt="">
+                            <span id="tokoss{{ publication.id }}" class="ml-2" >{{ publication.likes_number }} Tokoss  </span>
+                        </div>
+                    </div>
+                </section>
+                    {% if forloop.last %}
+                        {% if finished %}
+                            <div class="col-8 offset-2 text-center container">
+                                <h6>{% block finished_publications_q %}Plus de nouvelles publications publiques pour cette recherche{% endblock %}</h6>
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                {% empty %}
+                    {% if request.GET.q %}
+                    <div class="col-8 offset-2 text-center container">
+                        <h6>{% block empty_publications_q %}Aucun resultat{% endblock %}</h6>
+                    </div>
+                    {% else %}
+                    <div class="col-8 offset-2 text-center container">
+                        <h6>{% block empty_publications %}Plus de nouvelles publications publiques{% endblock %}</h6>
+                    </div>
+                    {% endif %}
+                 {% endfor %}
+            </div>
+        </div>
+    </section>
+
+
+    <script src="{% static 'js/pc/registration/anonymous.js' %}" ></script>
+</body>
+</html>

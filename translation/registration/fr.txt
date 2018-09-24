@@ -1,0 +1,15 @@
+{% block placeholder_login_username %}Nom d'utilisateur{% endblock %}
+{% block placeholder_login_password %}Mot de passe{% endblock %}
+{% block submit_login %}Connexion{% endblock %}
+{% block fixed_section_header %}Inscrivez-vous en quatre étapes{% endblock %}
+{% block placeholder_signup_username %}Nom d'utilisateur{% endblock %}
+{% block placeholder_signup_contact %}Numéro cellulaire ou adresse e-mail{% endblock %}
+{% block placeholder_signup_password1 %}Mot de passe{% endblock %}
+{% block placeholder_signup_password2 %}Répéter le mot de passe{% endblock %}
+{% block submit_signup %}Entrer dans le jeu{% endblock %}
+{% block langue-link %}<a href="/accounts/anonymous/en/" class="mt-4 text-center" >Go to English</a>{% endblock %}
+{% block placeholder_q %}Rechercher...{% endblock %}
+{% block size %}Taille: {% endblock %}
+{% block finished_publications_q %}Plus de nouvelles publications publiques pour cette recherche{% endblock %}
+{% block empty_publications_q %}Aucun resultat{% endblock %}
+{% block empty_publications %}Plus de nouvelles publications publiques{% endblock %}

@@ -1,0 +1,8 @@
+pillow
+pyyaml
+ua-parser
+user-agents
+django-user-agents
+python-memcached
+python3-memcached
+django-celery
