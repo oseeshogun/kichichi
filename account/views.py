@@ -18,15 +18,15 @@ def home(request):
     if request.user.is_authenticated:
         username = request.user.username
         #if the user is authenticated, he's redirect to the interface
-        return HttpResponse('interface')
+        return redirect('interface:main', user_name=username)
     #if the user is unknown, he's is redirect to the anonymous page with french like default language
     return redirect('account:anonymous', lang=lang)
 
 def anonymous(request, lang):
     if request.user.is_authenticated:
-        username  = request.user.username
+        username = request.user.username
         # if the user is authenticated, he's redirect to the interface
-        return HttpResponse('interface')
+        return redirect('interface:main', user_name=username)
     if not lang in langues:
         raise Http404
     device = device_type(request)

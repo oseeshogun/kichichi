@@ -1,0 +1,54 @@
+
+.publication_block{
+    background-color: white;
+    padding: 10px;
+}
+
+.publication_profil{
+    max-width: 50px;
+    border-radius: 80%;
+}
+
+.publication_username{
+    font-family: Galada, serif;
+}
+
+.comment_header{
+    background-color: snow;
+}
+
+.comment_header span{
+    background-color: burlywood;
+    border-radius: 0%;
+}
+
+
+
+.publication_appreciation img{
+    cursor: pointer;
+}
+.publication_appreciation button{
+    background-color: transparent;
+    border: none;
+}
+.publication_appreciation button:active{
+    background-color: transparent;
+    border: none;
+    border-color: transparent;
+}
+
+.comment_header span{
+    cursor: pointer;
+}
+
+.comments{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 15px;
+}
+.comment_img{
+    max-width: 40px;
+}
+
+.comment_img{
+    max-width: 40px;
+}

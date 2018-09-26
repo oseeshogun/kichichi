@@ -1,0 +1,82 @@
+<!doctype html>
+
+{% load static %}
+
+
+
+<html lang="{{ lang }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% include 'cdn/cdn.html' %}
+    <link rel="stylesheet" href="{% static 'css/pc/interface/user.css' %}">
+    <title>Kichichi</title>
+</head>
+<body>
+
+    <!--this is the navbar in the top of user interface-->
+        {% include 'pc/base/nav.html' %}
+
+
+    <div class="container-fluid row mt-4">
+
+
+        <!--interspace-->
+        <div class="col-3"></div>
+
+
+        <!--le premier-->
+        <div class="col-3" id="first_section">
+                <div class="text-center">
+                        <img src="{{ profile.profil.url }}" class="publication_profil_mb-4 mt-4" alt="">
+                            <p class="profil_username mt-4" id="profil_username" >{{ user.username }}</p>
+                </div>
+            <div class="pl-4 title_notifications">
+                {% block recent_notifications %}Récentes notifications{% endblock %}
+                <span class="ml-4 pl-1 pr-1" id="notification_number"> {{ notifications.count }} </span>
+            </div>
+            <div class="notifications">
+                {% for notification in notifications %}
+                    {% if not notification.important %}
+                        <div id="notification{{ notification.id }}">
+                            {{ notification }}
+                            <br>
+                            <form class="form_notification" action="" method="POST">
+                                 {% csrf_token %}
+                                 <input type="hidden" name="id" value="{{ notification.id }}">
+                                <button class="btn mt-4" id="notification{{ notification.id }}">{% block delete %}Supprimer{% endblock %}</button>
+                            </form>
+                            <hr>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <!--fin du premier-->
+        <script>
+            var lang = '{{ lang }}';
+        </script>
+        <!--deuxième-->
+        <div class="col-6" class="publications" id="publications">
+            {% for publication in publications %}
+                {% if not publication.publisher in followings %}
+                    {% if publication.public %}
+                        {% if not publication.inappropriate %}
+                            {% if forloop.counter <= 15 %}
+                                {% include 'pc/base/publication.html' %}
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        </div>
+        <!--fin du deuxième-->
+    </div>
+
+
+    <script src="{% static 'js/pc/interface/user.js' %}"></script>
+    <script src="{% static 'js/pc/standard/appreciation.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,2 @@
+{% block recent_notifications %}Récentes notifications{% endblock %}
+{% block delete %}Supprimer{% endblock %}

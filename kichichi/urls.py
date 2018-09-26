@@ -11,4 +11,8 @@ urlpatterns = [
 
     #this path is for accounts: it conatains login, signup  and anonymous views
     path('accounts/', include('account.urls')),
+
+    path('user/', include('interface.urls')),
+
+    path('publication/', include('publication.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

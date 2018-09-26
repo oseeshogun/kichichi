@@ -1,0 +1,52 @@
+/*
+the body css is include in the nav include
+*/
+
+/*
+those styles are for user profile and notifuications
+*/
+#first_section{
+    position: fixed;
+    overflow-wrap: break-word;
+    overflow: scroll;
+    padding-bottom: 200px;
+}
+#first_section .title_notifications{
+    background-color: snow;
+    margin-bottom: 15px;
+}
+.profil_username{
+    font-family: Galada, serif;
+    font-size: 25px;
+}
+#first_section img{
+    max-width: 200px;
+    border-radius: 35%;
+}
+.title_notifications{
+    font-family: Georgia,'Arial Rounded MT Bold', Galada, 'Times New Roman', Times, serif;
+    font-size: 20px;
+}
+
+.title_notifications span{
+    background-color: burlywood;
+    border-radius: 30%;
+}
+
+.notifications{
+    background-color: transparent;
+    border-style: solid;
+    border: 1px black;
+    padding: 10px;
+    font-family: 'Californian FB', Courier, monospace;
+}
+:root{
+    --display: none
+}
+#first_section::-webkit-scrollbar{
+   display: var(--display);
+   width: 18px;
+}
+#first_section::-webkit-scrollbar-thumb{
+    background: white;
+}

@@ -1,0 +1,81 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/bases/pc/publication.css' %}">
+
+<div class="container publication_block mb-4" id="publication_container{{ publication.id}}">
+   <div class="publication_header">
+       <img src="{{ publication.profil.url }}" class="publication_profil ml-4 mr-4" alt="">
+       <span class="publication_username mr-4">{{ publication.publishedby }}</span>
+   </div>
+   <div class="publication_title">
+        <blockquote class="mt-4">
+            {{ publication.text }}
+            <br>
+            {% if publication.is_file %}
+                {% if lang == 'fr' %}
+                    <strong>Taille: {{ publication.size }} Mo</strong>
+                {% elif lang == 'en' %}
+                    <strong>Size: {{ publication.size }} Mo</strong>
+                {% endif %}
+            {% endif %}
+        </blockquote>
+        <hr>
+   </div>
+   <div class="publication_file">
+       {% if '.mp3' in publication.file.url or '.aac' in publication.file.url or '.MP3' in publication.file.url or '.AAC' in publication.file.url %}
+            <audio src="{{ publication.file.url }}" class="form-control mt-2" controls preload="metadata"></audio>
+       {% elif '.mp4' in publication.file.url or '.MP4' in publication.file.url  %}
+            <video src="{{ publication.file.url }}" class="form-control mt-2" controls preload="metadata"></video>
+       {% else %}
+            <img src="{{ publication.file.url }}" class="form-control mt-2" alt="">
+       {% endif %}
+   </div>
+   <hr>
+   <div class="publication_appreciation mt-4 row">
+       <div class="col-4" id="tokoss">
+           <form action="" class="" id="{{ publication.id }}" toks="{{ publication.likes_number }}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="publication_id"  value="{{ publication.id }}">
+                    <button type="submit" class="ml-4 mr-2">
+                        {% if request.user in publication.likers.all %}
+                            <img src="{% static 'images/tokoss/tokoss.png' %}" id="tokoss_img{{ publication.id }}" alt="">
+                        {% else %}
+                            <img src="{% static 'images/tokoss/not_tokoss.png' %}" id="tokoss_img{{ publication.id }}" alt="">
+                        {% endif %}
+                    </button>
+                    <span id="tokoss{{ publication.id }}" >{{ publication.likes_number }} Tokoss  </span>
+            </form>
+       </div>
+        {% if request.user.username == publication.publisher.username %}
+            <div class="col-6" id="delete{{ publication.id }}" class="delete_publication">
+                    <form action="/publication/delete/" id="delete-form" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="id" value="{{ publication.id }}">
+                        <button type="submit"><img src="{% static 'images/no.png' %}" alt=""><span class="ml-4 mr-2">
+                            {% if lang == 'fr' %}
+                                Supprimer
+                            {% elif lang == 'fr' %}
+                                Delete
+                            {% endif %}
+                        </span></button>
+                    </form>
+             </div>
+        {% endif %}
+       {% if not request.user.username == publication.publisher.username %}
+            <div class="col-6 inappropriate" id="inappropriate{{ publication.id }}">
+
+                <form action="{{ publication.id }}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="id"  value="{{ publication.id }}">
+
+                    <span class="ml-4 mr-2"> <button type="submit"><img src="{% static 'images/tokoss/Inappropriate.png' %}" alt=""></button> </span>
+                    {% if lang == 'fr' %}
+                        Inapproprié
+                    {% elif lang == 'en' %}
+                        Inappropriate
+                    {% endif %}
+                </form>
+            </div>
+        {% endif %}
+   </div>
+</div>
