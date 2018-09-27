@@ -31,6 +31,14 @@
        {% endif %}
    </div>
    <hr>
+    <style>
+        .publication_appreciation{
+            font-family: 'Kaushan Script' ,Jokerman, Harrington, sans serif;
+        }
+        .publication_title blockquote{
+            font-family: 'Comic Sans MS', SimSun, 'Kaushan Script' ,Jokerman, Harrington, sans serif;
+        }
+    </style>
    <div class="publication_appreciation mt-4 row">
        <div class="col-4" id="tokoss">
            <form action="" class="" id="{{ publication.id }}" toks="{{ publication.likes_number }}" method="POST">
@@ -77,5 +85,46 @@
                 </form>
             </div>
         {% endif %}
-   </div>
+    </div>
+
+       <!--commentaire-->
+       <div class="mt-4 title_notifications comment_header">
+           <span id="comment_count{{ publication.id }}" class="lire{{ publication.id }}" > {{ publication.comments_set.count }}
+                {% if lang == 'fr' %}
+                    commentaires
+                {% elif lang == 'en' %}
+                    comments
+               {% endif %}
+           </span>
+           <div id="comments{{ publication.id }}" class="comments mt-2 mb-2">
+                   {% for comment in publication.comments_set.all %}
+                        {% if forloop.first %}
+                           <h6 id="comment_by{{ publication.id }}" ><strong>{{ comment.comment_by }}</strong></h6>
+                           <div class="mt-2 commentaire ml-4" id="comment_comment{{ publication.id }}" >
+                                {{ comment.comment }}
+                                <hr>
+                           </div>
+                        {% endif %}
+
+                    {% empty %}
+                        <img src="" class="mr-4 comment_img" id="comment_img{{ publication.id }}" alt=""> <span id="comment_by{{ publication.id }}" ></span>
+                       <div class="ml-4" id="comment_comment{{ publication.id }}" >
+
+                       </div>
+                {% endfor %}
+           </div>
+
+            <div class="commentaire">
+                <form action="" id="comment{{ publication.id }}"  class="mt-2" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="publication_id"  value="{{ publication.id }}">
+                    <input type="hidden" name="type" class="{{ publication.id }}"  value="follow">
+                    {% if lang == 'fr' %}
+                        <input type="text" id="input_comment{{ publication.id }}" class="form-control" name="comment" placeholder="Ecrivez un commentaire..." maxlength="70" required>
+                    {% elif lang  == 'en' %}
+                        <input type="text" id="input_comment{{ publication.id }}" class="form-control" name="comment" placeholder="Wrte a comment..." maxlength="70" required>
+                    {% endif %}
+                </form>
+            </div>
+       </div>
 </div>

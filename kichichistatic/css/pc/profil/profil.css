@@ -1,0 +1,83 @@
+/*
+body style is include on the base nav
+*/
+
+/*
+this is for the header of the page
+*/
+#profil_img{
+    max-width: 200px;
+    border-radius: 10%;
+}
+#header{
+    background-repeat: no-repeat;
+    background: url('/static/images/Kinshasa-rdc.jpg');
+}
+#btn_profil{
+    display: none;
+    background-color: thistle;
+    border: 1px solid black;
+    border-radius: 0;
+    font-size: 20px;
+}
+#file_profil{
+    display: none;
+}
+
+#profil_img{
+    image-orientation: from-image;
+    width: 210px;
+    height: 210px;
+}
+#profil_form{
+    display: none;
+}
+
+
+/*
+this is for all input file
+*/
+#file{
+    display: none;
+}
+#label_file:hover{
+    cursor: pointer;
+}
+#label_file{
+    background-color: #40e0d0;
+    border: 1px solid black;
+}
+i img{
+    max-width: 25px;
+}
+
+
+/*
+this is for the post publication section
+*/
+
+#post_publication{
+    margin-bottom: 20px;
+    background-color: azure;
+    padding: 15px;
+}
+#publication_header{
+    font-size: 30px;
+    color: seagreen;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+/*
+this is for the user information
+*/
+.containt_details span{
+    position: absolute;
+    left: 240px;
+}
+.containt_details h6{
+    margin: 20px 0px;
+}
+
+.containt_details{
+    background-color: wheat;
+}

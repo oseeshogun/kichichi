@@ -1,0 +1,72 @@
+<!doctype html>
+
+{% load static %}
+
+<html lang="{{ lang }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% include 'cdn/cdn.html' %}
+    <link rel="stylesheet" href="{% static 'css/pc/profil/profil.css' %}">
+    <title>Kichichi</title>
+</head>
+<body>
+
+    {% include 'pc/base/nav.html' %}
+
+
+
+    <!--cover and header-->
+        <div id="header" class="pt-4 pb-4">
+            <div class="container text-center col-2 offset-5">
+                <style>
+
+                </style>
+                <img src="{{ user.profile.profil.url  }}" id="profil_img" alt="">
+            </div>
+            <div class="username_section text-center">
+                <h1 class="display-1 text-light" id="profil_username">{{ user.username }}</h1>
+            </div>
+        </div>
+    <!--End cover and header-->
+
+    <div class="container col-8 offset-2 mt-4">
+        <div class="col-8 offset-2 row text-center">
+            <form action="" class="col-6 mt-4" >
+                {% csrf_token %}
+                <input type="hidden" name="username" value="{{ user.username }}">
+                <button type="submit" class="btn btn-secondary">Ajouter à la Dream Team</button>
+            </form>
+            <form action="" class="col-6 mt-4" id="follow_form">
+                {% csrf_token %}
+                <input type="hidden" name="username" value="{{ user.username }}">
+                <button type="submit" class="btn btn-success" id="prop_btn">Suivre</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        var username = '{{ user.username }}';
+    </script>
+    {% if nomore == True %}
+        <script>
+            var nopublication = true;
+        </script>
+    {% else %}
+
+        <script>
+            var nopublication = false;
+        </script>
+    {% endif %}
+
+
+
+
+
+    <script src="{% static 'js/pc/profil/soneprofil.js' %}"></script>
+    <script src="{% static 'js/pc/standard/appreciation.js' %}"></script>
+    <script src="{% static 'js/pc/standard/follow.js' %}"></script>
+</body>
+</html>

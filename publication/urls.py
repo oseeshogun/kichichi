@@ -11,4 +11,10 @@ urlpatterns = [
     path('inappropriate/', views.inappropriate),
 
     path('get/', views.get_publication),
+
+    path("addcomment/", views.addcomment),
+
+    path('post/', views.poster),
+
+    path("getcomments/", views.getcomments),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -39,10 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_user_agents',
     'account',
-    # 'profil',
-    # 'publication',
-    # 'interface',
-    # 'recherche',
+    'profil',
+    'publication',
+    'interface',
+    'dreamteam',
 ]
 
 CACHES = {

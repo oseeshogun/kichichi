@@ -15,8 +15,8 @@ def main(request, user_name):
     if user_name != request.user.username:
         return HttpResponse("profile d'un autre utilisateur")
     user_profile = Profile.objects.get(user=request.user)
-    publications = Publication.objects.all()[0:20]
-    notifications = Notification.objects.filter(user=request.user)
+    publications = Publication.objects.all()[0:2]
+    notifications = Notification.objects.filter(user=request.user)[:10]
     propositions = Profile.objects.all()
     myfollow = Following.objects.get(user=request.user)
     followings = myfollow.followings.all()
@@ -32,6 +32,7 @@ def main(request, user_name):
         if not proposition.user in followings:
             if proposition.user.username in followings_first:
                 followings_first_count = followings_first_count + 1
+    superusers = User.objects.filter(is_superuser=True)
     context = {
         'profile': user_profile,
         'publications': publications,
@@ -42,6 +43,7 @@ def main(request, user_name):
         'followings_first_count': followings_first_count,
         'publications_counter': publications_counter,
         'lang':lang,
+        'superusers':superusers,
     }
     return render(request, '{0}/{1}/interface/user.html'.format(device, lang), context)
 
@@ -54,4 +56,32 @@ def delete_notification(request):
     user = request.user
     notification_number = Notification.objects.filter(user=user).count()
     data = {'success': True, 'id': notification_id, 'number': notification_number}
+    return JsonResponse(data)
+
+
+def follow(request):
+    if request.method == 'GET':
+        raise Http404
+    user = request.user
+    profil_username = request.POST.get('profil_username')
+    type = request.POST.get('type')
+    data = {}
+    lang = request.user.profile.langue
+    to_add_user = User.objects.get(username=profil_username)
+    myfollow = Following.objects.get(user=user)
+    followings = myfollow.followings.all()
+    if not to_add_user in followings:
+        myfollow.followings.add(to_add_user)
+        data['success'] = 'Unfollow'
+        if lang == 'fr':
+            data['text'] = 'Ne plus suivre'
+        elif lang == 'en':
+            data['text'] = 'Unfollow'
+    else:
+        myfollow.followings.remove(to_add_user)
+        data['success'] = 'follow'
+        if lang == 'fr':
+            data['text'] = 'Suivre'
+        elif lang == 'en':
+            data['text'] = 'Follow'
     return JsonResponse(data)

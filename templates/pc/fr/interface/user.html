@@ -35,7 +35,7 @@
                 </div>
             <div class="pl-4 title_notifications">
                 {% block recent_notifications %}Récentes notifications{% endblock %}
-                <span class="ml-4 pl-1 pr-1" id="notification_number"> {{ notifications.count }} </span>
+                <span class="ml-4 pl-1 pr-1" id="notification_number"> {{ user.notification_set.count }} </span>
             </div>
             <div class="notifications">
                 {% for notification in notifications %}
@@ -71,12 +71,40 @@
                     {% endif %}
                 {% endif %}
             {% endfor %}
+
         </div>
         <!--fin du deuxième-->
+
+
+        <div class="col-3">
+            <div id="dream_team" class="text-center">
+
+            </div>
+            <div class="onglets mt-4">
+
+            </div>
+            {% for proposition in propositions %}
+                {% if not proposition.user in followings %}
+                    {% if not proposition.user.username == user.username %}
+                        {% if not proposition.user.is_superuser %}
+                            {% include 'pc/base/followings.html' %}
+                        {% endif %}
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+
+            <a href="{% url 'profil:profil' user.username %}">
+                <button class="btn btn-success col-12 mb-2 mt-4">
+                        Profile
+                </button>
+          </a>
+        </div>
+        <!--fin du troisième-->
     </div>
 
 
     <script src="{% static 'js/pc/interface/user.js' %}"></script>
     <script src="{% static 'js/pc/standard/appreciation.js' %}"></script>
+    <script src="{% static 'js/pc/standard/follow.js' %}"></script>
 </body>
 </html>
