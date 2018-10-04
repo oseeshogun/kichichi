@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
-var start = 1;
-var limit = 2;
+var start = 2;
+var limit = 3;
 
 
 var maxreached = false;
@@ -143,7 +143,24 @@ function get_publictions(s, l, q) {
 
             start = start + 1
             limit = limit + 1
-            var output = '<section class="publication-block" >';
+
+            var output = '';
+
+
+            if (publication.ads){
+                output += '<div class="ads publication_block mt-4 mb-4">'
+                output += '<div class="publication_header ml-2">'
+                output += '<h2>Πthon 1.0.2</h2>'
+                output += '<h6>Logiciel en téléchargement gratuit</h6><hr>'
+                output += '<a href="http://infteamcd.pythonanywhere.com" target="_blank">Cliquez ici pour télécharger</a>'
+                output += '</div>'
+                output += '<div class="publication_file p-2">'
+                output += '<img src="/static/images/stat.gif" class="form-control mt-2" alt="">'
+                output += '</div>'
+                output += '</div>'
+            }
+
+            output += '<section class="publication-block" >';
             output += '<div class="container mt-4 mb-4" id="publication-'+publication.id+'">'
             output += '<div class="publication-header">'
             output += '<img src="'+ publication.profil +'" class="publication_profil ml-4 mr-4" alt="">'
@@ -195,7 +212,7 @@ function get_publictions(s, l, q) {
             $('.publications').append(output)
         },
         error:function(error){
-            console.log(error)
+            
         }
     })
 }

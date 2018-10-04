@@ -17,4 +17,6 @@ urlpatterns = [
     path('publication/', include('publication.urls')),
 
     path('profile/', include('profil.urls')),
+
+    path('dreamteam/', include('dreamteam.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -33,12 +33,13 @@ those styles are for user profile and notifuications
     border-radius: 30%;
 }
 
-.notifications{
+.notifications,.important-notification{
     background-color: transparent;
     border-style: solid;
     border: 1px black;
     padding: 10px;
     font-family: 'Californian FB', Courier, monospace;
+    word-wrap: break-word;
 }
 :root{
     --display: none
@@ -49,4 +50,47 @@ those styles are for user profile and notifuications
 }
 #first_section::-webkit-scrollbar-thumb{
     background: white;
+}
+
+/*
+this is for the not dream team header
+*/
+.no_dream_header{
+    background-color: white;
+    font-family: 'Times New Roman', Times, serif;
+}
+#no_dream_core{
+    padding: 80px;
+    background-color: floralwhite;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+/*
+this is for the dream team header
+*/
+#dream_core{
+    background-color: floralwhite;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+#dream_core img{
+    max-height: 60px;
+    border-radius: 70%;
+}
+#dream_core span{
+    font-size: 25px;
+    font-family: Galada,'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.profil_dream{
+    border: 1px solid gray;
+}
+.no_note{
+    background-color: floralwhite;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: gray;
+    border: none;
+}
+
+
+
+.team-message-head{
+    font-family: Galada,'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }

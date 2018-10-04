@@ -60,13 +60,8 @@
 
                                     <option value="public" selected>{% block public %}Public{% endblock %}</option>
 
-                                    <option value="followers">{% block post_followers %}Mes abonnées{% endblock %}</option>
 
-                                    {% for group in groups %}
-                                        {% if group.name != 'dreamteam' and group.name != 'family' and group.name != 'friends' %}
-                                            <option value="{{group.name}}">{{group.name}}</option>
-                                        {% endif %}
-                                    {% endfor %}
+                                    
                                     </select>
                                     </p>
                     </div>
@@ -88,7 +83,7 @@
                     {% include 'pc/base/publication.html' %}
 
                     {% if nomore != 'None' %}
-                        <h5 class="text-center mt-4" style="color:gray" >{% block nomore_publication %}Il n'a plus de publication{% endblock %}</h5>
+                        <h5 class="text-center mt-4" style="color:gray" >{% block nomore_publication %}Plus de publication{% endblock %}</h5>
                     {% endif %}
                 {% empty %}
                     <h1 class="text-center mt-4" style="color:gray" >{% block empty_publication %}Vous n'avez encore rien publier{% endblock %}</h1>
@@ -137,7 +132,7 @@
 
             <h6>{% block country %}Pays: <span class="ml-4 mt-2 mb-4">{{ profile.country|default:'Aucun pays' }}</span>{% endblock %}</h6>
 
-            <h6>Profession: <span class="ml-4">{{ profile.profession|default:'Aucune profession' }}</span></h6>
+            <h6> {% block professiontitle %} Profession: <span class="ml-4">{{ profile.profession|default:'Aucune profession' }}</span> {% endblock %} </h6>
 
             <h6>{% block birthdaytitle %}Date d'anniversaire: <span class="ml-4">{{ profile.birthday|date:"SHORT_DATE_FORMAT"|default:'Aucune date spécifiée' }}</span>{% endblock %}</h6>
 
@@ -400,21 +395,93 @@
                 </select>
                 <input type="text" name="profession" id="profession" class="form-control mb-4" placeholder="{% block profession %}Votre profession{% endblock %}" value="{{ profile.profession|default:''}}">
                 <input type="date" name="birthday" id="birthday" class="form-control mb-4" value="{{ profile.birthday|date:"Y-m-d"|default:'1998-03-03' }}">
-
-
+                <input type="radio" name="sexe" id="m" class="mr-2" value="M" {% if user.profile.sexe == 'M' %}checked{% endif %}><label for="m"> {% block m %} Masculin {% endblock %} </label>
+                <input type="radio" name="sexe" id="f" class="mr-2 ml-4" value="F" {% if user.profile.sexe == 'F' %}checked{% endif %}><label for="f"> {% block f %} Feminin {% endblock %} </label>
+                <br><br>
             <button type="submit" class="btn btn-success" >{% block tosave %}Enregistrer{% endblock %}</button>
             <button class="btn btn-success ml-4" id="edit_cancel">{% block cancel %}Annuler{% endblock %}</button>
             </form>
         </div>
 
+        <!-- voir followings and followers -->
+            <br>    
+            {% if not abonnees == 0 %}
+            <a href="/profile/?abonnees=True">
+                <button class="btn btn-success" id="viewfollowers"> {% block viewfollowers %} Voir mes abonnées{% endblock %}</button>
+            </a>
+            {% endif %}
+
+            {% if not followings_count == 0 %}
+            <a href="/profile/?abonnements=True">
+                <button class="btn btn-success" id="viewfollowings">{% block viewfollowings %}Voir mes abonnements{% endblock %}</button>
+            </a>
+            {% endif %}
+            <style>
+                #following_p img{
+                    max-height: 40px;
+                    border-radius: 10%;
+                }
+            </style>
+
+            <div id="viewabonnement" class="container col-8 offset-2">
+            {% if request.GET.abonnements or request.GET.abonnees %}
+                {% for proposition in abs %}
+                        {% if not proposition.user.username == user.username %}
+                            {% if not proposition.user.is_superuser %}
+                                  {% include 'pc/base/abs.html' %}
+                            {% endif %}
+                        {% endif %}
+                {% empty %}
+                <div class="text-center pt-3">
+                        {% if request.GET.abonnees %}
+                    <h5 style="color:gray">{% block no_followers %}Pas d'abonnés{% endblock %}</h5>
+                        {% elif request.GET.abonnements %}
+                        <h5 style="color:gray">{% block no_followings %}Pas d'abonnement{% endblock %}</h5>
+                        {% endif %}
+                </div>
+                {% endfor %}
+            {% endif %}
+            </div>
+        <!-- end voir followings and followers -->
+
+            <!--demande à la drema team en cours-->
+              <div id="demande">
+
+
+                {% for demande in user.profile.demande.all %}
+
+                      {% if forloop.first %}
+                          <h5 class="text-center mt-4 mb-4">{% block ask_no_response %} Demande non repondue{% endblock %}</h5>
+                      {% endif %}
+                  <div class="row container mt-4">
+                      <div class="col-6">
+
+                    <img src="{{ demande.profile.profil.url }}" class="mr-4" alt=""> <a href="/profile/{{ demande }}">{{ demande }}</a>
+
+                      </div>
+                  <form action="{{ demande.id }}" class="col-6" id="dreamteam_demande">
+                {% csrf_token %}
+                <input type="hidden" name="username" value="{{ demande.username }}">
+                <input type="hidden" name="id" value="{{ demande.id }}">
+                <button type="submit" class="btn btn-secondary" id="dreamtean_btn{{ demande.id }}">{% block cancel_request %}Annuler la demande{% endblock %}</button>
+            </form>
+                  </div>
+                {% endfor %}
+              </div>
+
             <a href="/accounts/logout/">
-                <button class="btn btn-secondary m-4">{% block logout %}Déconnexion{% endblock %}</button>
+                <br><br><br>
+                <button class="btn btn-secondary mt-4">{% block logout %}Déconnexion{% endblock %}</button>
             </a>
         </div>
 
     </div>
     <!--end row-->
 
+
+    {% if dreamteam %}
+        {% include 'pc/base/chat.html' %}
+    {% endif %}
 
 
 

@@ -29,7 +29,7 @@ $('body').on('submit', '#tokoss form', function(e){
             }
         },
         error: function (json){
-            console.log(json)
+            
         },
 
 
@@ -52,7 +52,7 @@ $('body').on('submit', '.inappropriate form', function(e){
           $('#publication_container'+publication_id).remove()
         },
         error: function (json){
-            console.log(json)
+            
         },
     })
 });
@@ -71,7 +71,7 @@ $('body').on('submit', '.delete_publication form', function(e){
           $('#publication_container'+publication_id).remove()
         },
         error: function (json){
-            console.log(json)
+           
         },
     })
 })
@@ -107,7 +107,7 @@ $('body').on('submit', '.commentaire form', function(e){
             }
         },
         error: function (json){
-            console.log(json)
+           
         },
 
 
@@ -141,7 +141,7 @@ $('body').on('click', '.comment_header span', function (){
 
         },
         error: function (json){
-            console.log(json)
+            
         },
 
 

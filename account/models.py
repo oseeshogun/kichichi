@@ -12,7 +12,7 @@ def user_directory_path(instance, filename):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     phone_number = models.CharField(max_length=20, null=True, blank=True)
-    address = models.TextField(null=True, blank=True)
+    sexe = models.CharField(max_length=10, null=True, blank=True)
     country = models.CharField(max_length=250, null=True, blank=True)
     town = models.CharField(max_length=200, null=True, blank=True)
     birthday = models.DateField(null=True, blank=True)
@@ -20,6 +20,8 @@ class Profile(models.Model):
     profil = models.ImageField(default="profiles/default/profil.png")
     actived = models.BooleanField(default=False)
     langue = models.CharField(max_length=5, default='fr')
+    demande = models.ManyToManyField(User, related_name='in_demande', blank=True)
+    note = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return self.user.username
@@ -32,6 +34,15 @@ class Profile(models.Model):
 
     def is_confirmed(self):
         return self.actived
+
+class Onliners(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    online = models.BooleanField(default=False)
+    intime = models.DateTimeField(auto_now=True)
+
+
+    def __str__(self):
+        return self.user.username
 
 
 class Following(models.Model):
@@ -116,3 +127,7 @@ class Notification(models.Model):
 
     class Meta:
         ordering = ['-send_time']
+
+class Message(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    message = models.TextField()

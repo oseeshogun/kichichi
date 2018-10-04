@@ -1,0 +1,60 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/bases/pc/chat.css' %}">
+
+
+<div id="chat">
+     <div class="chat-header text-left">
+        <h4 class="row pt-2 pl-2">
+            {% if lang == 'fr' %}
+            <p class="col-10" >Chatter avec {{ partenaire }} </p>
+            {% elif lang == 'en' %}
+            <p class="col-10" >Chat with {{ partenaire }} </p>
+            {% endif %}
+            <span class="text-right col-1 mr-1" id="resize-chat">+</span>
+        </h4>
+        {% if lang == 'fr' %}
+            <p class="onliner ml-2">Hors ligne...</p>
+        {% elif lang == 'en' %}
+            <p class="onliner ml-2">Offline...</p>
+        {% endif %}
+     </div>
+    <div class="chatbox hide">
+
+        <div class="chatlogs" id="chatlogs">
+            {% for chat in chats reversed %}
+
+                {% if chat.destinateur == partenaire %}
+                    <div class="chat friend mb-4">
+                        <div class="user-photo"><img src="{{ partenaire.profile.profil.url }}" alt=""></div>
+                        <p class="chat-message">{{ chat }}</p>
+                    </div>
+                {% endif %}
+
+                {% if chat.destinateur == request.user %}
+                    <div class="chat self mb-4">
+                        <div class="user-photo"><img src="{{ request.user.profile.profil.url }}" alt=""></div>
+                        <p class="chat-message">{{ chat }}</p>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+
+
+        <div class="chat-form mt-4">
+            <form action="/dreamteam/chat/" method="post">
+                {% csrf_token %}
+                {% if lang == 'fr' %}
+                    <input type="text" class="form-control" id="chat-write" name="chatwrite" placeholder="Ecrivez...">
+                {% elif lang == 'en' %}
+                    <input type="text" class="form-control" id="chat-write" name="chatwrite" placeholder="Write...">
+                {% endif %}
+            </form>
+        </div>
+
+    </div>
+</div>
+<input type="hidden" name="{{ request.user.profile.profil.url }}" id="profiler">
+
+<script src="{% static 'js/pc/standard/chat.js' %}"></script>

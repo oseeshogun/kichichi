@@ -4,7 +4,12 @@ from .models import *
 #the validator.py is contain sign up  user validations form
 from . import validator
 from django.contrib.auth import login, authenticate, logout
-from kichichi.shorcuts import device_type
+from kichichi.shortcuts import device_type
+from django.contrib.auth.views import LogoutView
+import datetime
+from datetime import timezone
+from kichichi.shortcuts import *
+from dreamteam.models import *
 # Create your views here.
 # Create your views here.
 
@@ -30,12 +35,12 @@ def anonymous(request, lang):
     if not lang in langues:
         raise Http404
     device = device_type(request)
-    publications = Publication.objects.filter(public=True)[0:1]
+    publications = Publication.objects.filter(public=True)[0:2]
     search = request.GET.get('q')
     finished = False
     if search:
-        publications = Publication.objects.filter(public=True, text__icontains=search)[0:1]
-        if Publication.objects.filter(public=True, text__icontains=search)[0:2].count() == 1:
+        publications = Publication.objects.filter(public=True, text__icontains=search)[0:2]
+        if Publication.objects.filter(public=True, text__icontains=search)[0:3].count() <= 2:
             finished = True
     context = {
         'publications': publications,
@@ -111,15 +116,26 @@ def signup_user(request):
             new_profile.phone_number = contact
         new_profile.save()
         Following.objects.create(user=new_user)
+        Onliners.objects.create(user=new_user)
         login(request, new_user)
         initial_groups = ['dreamteam', 'family', 'friends']
         for group in initial_groups:
             User_groups.objects.create(user=new_user, name=group)
         notification = " "
         if lang == "fr":
+            notification = """Cette version est un bêta, il y a des fonctionnalités à complèter,
+                                pour l'instant, nous
+                                vous prions de notifier chaque remarque, critique ou erreur sur Kichichi, Merci. 
+                                Mbula Mboma Gilberto (équipe de developpement)"""
+            Notification.objects.get_or_create(user=new_user, notification=notification)
             notification = "Bienvenue sur Kichichi, nous sommes ravis de vous savoir connecter"
             Notification.objects.get_or_create(user=new_user, notification=notification)
         else:
+            notification = """This is a beta version, There are features to completed,
+                                            for the time being, we
+                                            beg you to notify each remark, critic or mistake on Kichichi, Thank you. 
+                                            Mbula Mboma Gilberto (development team)"""
+            Notification.objects.get_or_create(user=new_user, notification=notification)
             notification = "Welcome to Kichichi, We are happy to see you connected"
             Notification.objects.get_or_create(user=new_user, notification=notification)
         data['success'] = 'success'
@@ -157,6 +173,9 @@ def get_publications(request):
         else:
             image = publication.file.url
         likes_number = publication.likes_number
+        ads = False
+        if start % 5 == 0:
+            ads = True
         response = {
             'id': publication.id,
             'profil': publication.publisher.profile.profil.url,
@@ -167,9 +186,34 @@ def get_publications(request):
             'video': video,
             'image': image,
             'likes_number': likes_number,
-            'nomore': nomore
+            'nomore': nomore,
+            'ads':ads,
         }
         return JsonResponse(response)
 
 
 
+def logout_user(request):
+    logout(request)
+    return redirect('account:home')
+
+def online(request):
+    online = Onliners.objects.get(user=request.user)
+    online.online = True
+    online.save()
+    for online in Onliners.objects.all():
+        if datetime.datetime.now(timezone.utc) - online.intime > datetime.timedelta(0, 15, 685252):
+            online.online = False
+            online.save()
+    dreamteam = dreamteamid(request.user)
+    if dreamteam:
+        partenaire = dreamteampartern(request.user)
+        online = partenaire.onliners.online
+    else:
+        online = False
+    return JsonResponse({'online':online})
+
+def message(request):
+    message = request.POST.get('message')
+    Message.objects.create(user=request.user, message=message)
+    return JsonResponse({'success':True})

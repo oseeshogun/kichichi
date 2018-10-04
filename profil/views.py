@@ -2,17 +2,21 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, Http404, JsonResponse
 from django.contrib.auth.decorators import login_required
 from account.models import *
+from dreamteam.models import *
 from django.core.files.storage import FileSystemStorage
 from django.conf import settings
 from datetime import datetime
-from kichichi.shorcuts import *
+from kichichi.shortcuts import *
 
 # Create your views here.
 @login_required()
 def profil(request, user_name):
     if request.user.username == user_name:
         return redirect('profil:myprofile')
-    user = User.objects.get(username=user_name)
+    try:
+        user = User.objects.get(username=user_name)
+    except User.DoesNotExist:
+        raise Http404
     device = device_type(request)
     lang = request.user.profile.langue
     publications = Publication.objects.filter(publisher=user)[0:2]
@@ -25,10 +29,9 @@ def profil(request, user_name):
     followings_count = myfollow.followings.count()
     if myfollow.followings.count() == 0:
         followings_count = 0
-    abonnees = request.user.is_following_me.count()
-    if request.user.is_following_me.count() == 0:
+    abonnees = user.is_following_me.count()
+    if user.is_following_me.count() == 0:
         abonnees = 0
-    dreamteam = User_groups.objects.get(user=user, name='dreamteam')
     family = User_groups.objects.get(user=user, name='family')
     friends = User_groups.objects.get(user=user, name='friends')
     propositions = Profile.objects.all()
@@ -46,6 +49,16 @@ def profil(request, user_name):
         if not proposition.user in followings:
             if proposition.user.username in followings_first:
                 followings_first_count = followings_first_count + 1
+    dreamteam = dreamteamid(request.user)
+    partenaire = dreamteampartern(request.user)
+    chats = False
+    if dreamteam:
+        dreamteam = Dreamteam.objects.get(pk=dreamteam)
+        partenaire = dreamteampartern(request.user)
+        for c in Chat.objects.filter(dreamteam=dreamteam, comefrom=partenaire, unread=True):
+            c.unread = False
+            c.save()
+        chats = Chat.objects.filter(dreamteam=dreamteam).order_by('-sendtime')[:10]
     context = {
         'profile': request.user.profile,
         'publications': publications,
@@ -63,6 +76,8 @@ def profil(request, user_name):
         'followings_first_count': followings_first_count,
         'publications_counter': publications_counter,
         'user':user,
+        'partenaire':partenaire,
+        'chats':chats,
     }
     return render(request, '{0}/{1}/profil/soneprofil.html'.format(device, lang), context)
 
@@ -82,15 +97,17 @@ def myprofil(request):
     if myfollow.followings.count() == 0:
         followings_count = 0
     abonnees = request.user.is_following_me.count()
+    abs = request.user.is_following_me.all()
     if request.user.is_following_me.count() == 0:
         abonnees = 0
-    dreamteam = User_groups.objects.get(user=request.user, name='dreamteam')
     family = User_groups.objects.get(user=request.user, name='family')
     friends = User_groups.objects.get(user=request.user, name='friends')
     propositions = Profile.objects.all()
     myfollow = Following.objects.get(user=request.user)
     followings = myfollow.followings.all()
     followings_first = {}
+    if request.GET.get('abonnements'):
+        abs = followings
     for e in myfollow.followings.all():
         hisfollow = Following.objects.get(user=e)
         his_list = hisfollow.followings.all()
@@ -102,6 +119,16 @@ def myprofil(request):
         if not proposition.user in followings:
             if proposition.user.username in followings_first:
                 followings_first_count = followings_first_count + 1
+    dreamteam = dreamteamid(request.user)
+    partenaire = dreamteampartern(request.user)
+    chats = False
+    if dreamteam:
+        dreamteam = Dreamteam.objects.get(pk=dreamteam)
+        partenaire = dreamteampartern(request.user)
+        for c in Chat.objects.filter(dreamteam=dreamteam, comefrom=partenaire, unread=True):
+            c.unread = False
+            c.save()
+        chats = Chat.objects.filter(dreamteam=dreamteam).order_by('-sendtime')[:10]
     context = {
         'profile': request.user.profile,
         'publications': publications,
@@ -118,6 +145,9 @@ def myprofil(request):
         'followings_first': followings_first,
         'followings_first_count': followings_first_count,
         'publications_counter': publications_counter,
+        'partenaire':partenaire,
+        'chats':chats,
+        'abs':abs,
     }
     return render(request, '{0}/{1}/profil/profil.html'.format(device, lang), context)
 
@@ -210,10 +240,12 @@ def updateprofil(request):
     country = request.POST.get('country')
     profession = request.POST.get('profession')
     birthday = request.POST.get('birthday')
+    sexe = request.POST.get('sexe')
     profile = Profile.objects.get(user=request.user)
     profile.town = town
     profile.country = country
     profile.profession = profession
+    profile.sexe = sexe
     if birthday:
         profile.birthday = birthday
     profile.save()
@@ -239,6 +271,10 @@ def followprofil(request):
             data['text'] = 'Ne plus suivre'
         elif lang == 'en':
             data['text'] = 'Unfollow'
+        if to_add_user.profile.langue == 'fr':
+            Notification.objects.get_or_create(user=to_add_user, notification=request.user.username + ' a commencé à vous suivre')
+        elif to_add_user.profile.langue == 'en':
+            Notification.objects.get_or_create(user=to_add_user, notification=request.user.username + ' is following you')
     else:
         myfollow.followings.remove(to_add_user)
         data['success'] = 'follow'
@@ -247,3 +283,10 @@ def followprofil(request):
         elif lang == 'en':
             data['text'] = 'Follow'
     return JsonResponse(data)
+
+def note(request):
+    note = request.POST.get('message')
+    profile = Profile.objects.get(user=request.user)
+    profile.note = note
+    profile.save()
+    return redirect('account:home')

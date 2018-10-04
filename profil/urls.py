@@ -19,5 +19,7 @@ urlpatterns = [
 
     path('follow/', views.followprofil),
 
+    path('note/', views.note),
+
     path('<slug:user_name>/', views.profil, name='profil')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

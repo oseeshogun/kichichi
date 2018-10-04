@@ -1,7 +1,13 @@
 {% load static %}
 
+<script>
+    var langue = '{{ lang }}';
+</script>
 
 <link rel="stylesheet" href="{% static 'principles/bootstrap.min.css' %}">
 <script src="{% static 'principles/jquery.js' %}"></script>
 <script src="{% static 'principles/bootstrap.min.js' %}"></script>
 <script src="{% static 'principles/popper.js' %}"></script>
+{% if request.user.is_authenticated %}
+<script src="{% static 'principles/signals.js' %}"></script>
+{% endif %}

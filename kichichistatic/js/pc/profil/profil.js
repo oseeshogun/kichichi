@@ -38,7 +38,12 @@ $('#file_profil').change(function(e){
         $("#btn_profil").css('display', 'initial')
     } else {
         input.value = ""
-        $('.upload_span_profil').text('Le profil doit être une image');
+        if (lang == 'fr'){
+            $('.upload_span_profil').text('Le profil doit être une image');
+        } else if (lang == 'en'){
+            $('.upload_span_profil').text('The profile must be a picture');
+        }
+       
     }
 
 
@@ -60,47 +65,92 @@ $("#file").change(function(e){
 
     $('.text-red').text('')
     if (ext == 'mp4'){
-        if (file[0].size/1050030 >  5){
-            $('.text-red').text('La taille limite pour les fichiers mp4 est de 5 Mb')
+        if (file[0].size/1050030 >  10){
+            if (lang == 'fr'){
+                $('.text-red').text('La taille limite pour les fichiers mp4 est de 10 Mb')
+            } else if (lang == 'en'){
+                $('.text-red').text('The maximum size for mp4 is 10 Mb')
+            }
+            
             input.value = "";
         }
     } else if (ext == '3gp') {
-        if (file[0].size/1050030 >  3){
-            $('.text-red').text('La taille limite pour les fichiers 3gp est de 3 Mb')
+        if (file[0].size/1050030 >  10){
+            if (lang == 'fr'){
+                $('.text-red').text('La taille limite pour les fichiers 3gp est de 10 Mb')
+            } else if (lang == 'en'){
+                $('.text-red').text('The maximum size for 3gp is 10 Mb')
+            }
+            
             input.value = "";
         }
     } else if ( ext == 'mp3' ){
-        if (file[0].size/1050030 >  3){
-            $('.text-red').text('La taille limite pour les fichiers mp3 est de 3 Mb')
+        if (file[0].size/1050030 >  5){
+            if (lang == 'fr'){
+                $('.text-red').text('La taille limite pour les fichiers mp3 est de 5 Mb')
+            } else if (lang == 'en'){
+                $('.text-red').text('The maximum size for mp3 is 5 Mb')
+            }
+            
             input.value = "";
         }
     }   else if (ext == 'aac') {
-        if (file[0].size/1050030 >  3){
-            $('.text-red').text('La taille limite pour les fichiers aac est de 3 Mb')
+        if (file[0].size/1050030 >  5){
+            if (lang == 'fr'){
+                $('.text-red').text('La taille limite pour les fichiers aac est de 5 Mb')
+            } else if (lang == 'en'){
+                $('.text-red').text('The maximum size for aac is 5 Mb')
+            }
+            
             input.value = "";
         }
     }   else if (ext == 'jpg'){
         if (file[0].size/1050030 >  1){
-            $('.text-red').text('La taille limite pour les images est de 1 Mb')
+            if (lang == 'fr'){
+                $('.text-red').text('La taille limite pour les images est de 1 Mb')
+            } else if (lang == 'en'){
+                $('.text-red').text('The maximum size for pictures is 1 Mb')
+            }
+            
             input.value = "";
         }
     } else if (ext == 'jpeg'){
         if (file[0].size/1050030 >  1){
-            $('.text-red').text('La taille limite pour les images est de 1 Mb')
+            if (lang == 'fr'){
+                $('.text-red').text('La taille limite pour les images est de 1 Mb')
+            } else if (lang == 'en'){
+                $('.text-red').text('The maximum size for pictures is 1 Mb')
+            }
+            
             input.value = "";
         }
     } else if (ext == 'png'){
         if (file[0].size/1050030 >  1){
+            if (lang == 'fr'){
+
+            } else if (lang == 'en'){
+                
+            }
             $('.text-red').text('La taille limite pour les images est de 1 Mb')
             input.value = "";
         }
     } else if (ext == 'gif'){
-        if (file[0].size/1050030 >  1){
-            $('.text-red').text('La taille limite pour les gif est de 1 Mb')
+        if (file[0].size/1050030 >  2){
+            if (lang == 'fr'){
+                $('.text-red').text('La taille limite pour les gif est de 2 Mb')
+            } else if (lang == 'en'){
+                $('.text-red').text('The maximum size for gifs is 2 Mb')
+            }
+            
             input.value = "";
         }
     } else {
-        $('.text-red').text('Ce type de fichier ne peut être posté')
+        if (lang == 'fr'){
+            $('.text-red').text('Ce type de fichier ne peut être posté')
+        } else if (lang == 'en'){
+            $('.text-red').text('This type of file is not supported!')    
+        }
+        
         input.value = "";
     }
 
@@ -289,7 +339,6 @@ function loadpublication(s, l, u){
         },
         error:function(error){
 
-            console.log(error)
         }
     })
 }
@@ -314,6 +363,40 @@ $('#edit_cancel').click(function(e){
 
 
 
+
+$('body').on('submit', '#dreamteam_demande', function(e){
+    e.preventDefault()
+    id = $(this).attr('action')
+        $.ajax({
+        method:'POST',
+        async: true,
+        url: '/dreamteam/demande/',
+        data:$(this).serialize(),
+        success: function (data){
+            if (data.add){
+                if (lang == 'fr'){
+                    $('#dreamtean_btn'+id).text('Annuler la demande')
+                } else if (lang == 'en'){
+                    $('#dreamtean_btn'+id).text('Cancel request')
+                }
+                
+            }
+            if (data.remove){
+                if (lang == 'fr'){
+                    $('#dreamtean_btn'+id).text('Ajouter à la dream team')
+                } else if (lang == 'en'){
+                    $('#dreamtean_btn'+id).text('Add to dream team')
+                }
+                
+            }
+
+        },
+        error: function (json){
+            
+        },
+    })
+
+})
 
 
 

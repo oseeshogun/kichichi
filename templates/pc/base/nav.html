@@ -12,8 +12,8 @@
                 </a>
             </div>
             <div class="search_class">
-                <form action="/recherche/ask" method="get">
-                    <input type="search" class="form-control" name="search_for" placeholder="{% if lang  == 'fr' %}Rechercher...{% elif lang == 'en' %}Search...{% endif %}" id="search_input" value="{{ request.GET.search_for }}" required>
+                <form action="/user/search" method="get">
+                    <input type="search" class="form-control" name="q" placeholder="{% if lang  == 'fr' %}Rechercher...{% elif lang == 'en' %}Search...{% endif %}" id="search_input" value="{{ request.GET.q }}" required>
                 </form>
             </div>
         </nav>

@@ -21,7 +21,15 @@
 
 
     <div class="container-fluid row mt-4">
-
+    {% if request.GET.q %}
+        <script>
+            var q = '{{ request.GET.q }}';
+        </script>
+    {% else %}
+        <script>
+            var q = 'None';
+        </script>
+    {% endif %}
 
         <!--interspace-->
         <div class="col-3"></div>
@@ -37,7 +45,37 @@
                 {% block recent_notifications %}Récentes notifications{% endblock %}
                 <span class="ml-4 pl-1 pr-1" id="notification_number"> {{ user.notification_set.count }} </span>
             </div>
+            <div class="important-notification">
+                {% for notification in notifications %}
+                    {% if notification.important %}
+                        <div id="notification{{ notification.id }}">
+                            {{ notification }}
+                            <br>
+                            <div class="row">
+                                <div class="col-6">
+                                    <form class="form_notification_special" action="/dreamteam/yes/" method="POST">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="id" value="{{ notification.id }}">
+                                        <button class="btn mt-4" id="notification{{ notification.id }}">{% block accept %}Accepter{% endblock %}</button>
+                                    </form>
+                                </div>
+                                <div class="notifications col-6">
+                                    <form class="form_notification form_notification_special" action="" method="POST">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="id" value="{{ notification.id }}">
+                                       <button class="btn mt-3" id="notification{{ notification.id }}">{% block no %}Refuser{% endblock %}</button>
+                                   </form>
+                                </div>
+                                
+                            </div>
+                            <hr>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+
+            </div>
             <div class="notifications">
+
                 {% for notification in notifications %}
                     {% if not notification.important %}
                         <div id="notification{{ notification.id }}">
@@ -56,12 +94,21 @@
         </div>
         <!--fin du premier-->
         <script>
+            var nomore = '{{ nomore }}';
             var lang = '{{ lang }}';
         </script>
         <!--deuxième-->
         <div class="col-6" class="publications" id="publications">
+            <!-- publicité -->
+            <style>
+            .ads{
+                background-color: white;
+            }    
+            </style>
+        
+            <!-- end publicité -->
             {% for publication in publications %}
-                {% if not publication.publisher in followings %}
+
                     {% if publication.public %}
                         {% if not publication.inappropriate %}
                             {% if forloop.counter <= 15 %}
@@ -69,7 +116,13 @@
                             {% endif %}
                         {% endif %}
                     {% endif %}
-                {% endif %}
+
+            {% empty %}
+            <div class="text-center">
+                <h1 class="dislpay-1" style="color:gray">
+                    Aucune publication trouvée
+                </h1>
+            </div>
             {% endfor %}
 
         </div>
@@ -78,11 +131,105 @@
 
         <div class="col-3">
             <div id="dream_team" class="text-center">
+                {% if dreamteam %}
+                    <div class="no_dream_header">
+                        <h1>DREAM TEAM</h1>
+                             <div id="dream_core" class="mt-4 p-2 text-left">
+                                <div class="profil_dream p-2">
+                                     <img src="{{ partenaire.profile.profil.url }}" alt="">
+                                     <span class="ml-4" >{{ partenaire }}</span>
+                                </div>
+                                 <div class="dream_note  mt-2 mb-4">
+                                     {% if partenaire.profile.note %}
+                                      <div class="profil_dream p-4">
+                                          {{ partenaire.profile.note }}
+                                      </div>
+                                     {% else %}
+                                         <div class="p-4 text-center no_note" id="">
+                                            {% block no_note %} Ton meilleur ami n'a pas grand-chose à te prévenir {% endblock %}
+                                         </div>
+                                     {% endif %}
 
+                                 </div>
+                                 <hr>
+                                 <div class="profil_dream p-2">
+                                     <img src="{{ user.profile.profil.url }}" alt="">
+                                     <span class="ml-4" >{{ user }}</span>
+                                 </div>
+                                 <div class="dream_note mt-2 mb-4">
+                                     {% if user.profile.note %}
+                                        <div class="profil_dream p-3">
+                                            {{ user.profile.note }}
+                                        </div>
+                                     {% else %}
+                                         <div class="p-4 text-center no_note" id="">
+
+                                         </div>
+                                     {% endif %}
+                                 </div>
+                                 <div class="mynoteform">
+                                     <form action="/profile/note/" class="form-horizontal" method="post">
+                                         {% csrf_token %}
+                                         <label for="note"></label>
+                                         <textarea name="message" id="note" cols="30" rows="10" class="form-control" placeholder="{% block placeholder_mynote %}Prévenez votre meilleur d'un événement, d'une nouvelle ou n'importe quoi qu'il doit savoir ou ne pas oublier.{% endblock %}"></textarea>
+                                        <button type="submit" class="btn btn-success mt-4">{% block save_mynote %}Enregistrer{% endblock %} </button>
+                                     </form>
+                                 </div>
+                            </div>
+                    </div>
+                {% elif not dreamteam %}
+                    <div class="no_dream_header">
+                        <h1>DREAM TEAM</h1>
+                             <div id="no_dream_core">
+                              {% block builddreamteam %}  Contruit ta dream team {% endblock %}
+                            </div>
+                    </div>
+
+                {% endif %}
             </div>
             <div class="onglets mt-4">
 
             </div>
+            {% for proposition in propositions %}
+                {% if not proposition.user in followings %}
+                    {% if proposition.user.username in followings_first %}
+                        {% if forloop.counter != 100 %}
+                            {% if not proposition.user.username == user.username %}
+                                {% if not proposition.user.is_superuser %}
+                                    {% include 'pc/base/followings.html' %}
+                                {% endif %}
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
+                {% endif %}                           
+            {% endfor %}
+
+            {% if followings_first_count < 10 %}
+                {% for proposition in propositions %}
+                    {% if not proposition.user in followings %}          
+                        {% if not proposition.user.username in followings_first %}
+                            {% if forloop.counter != 100 %}
+                                {% if not proposition.user.username == user.username %}
+                                    {% if not proposition.user.is_superuser %}
+                                        {% include 'pc/base/followings.html' %}
+                                    {% endif %}
+                                {% endif %}
+                            {% endif %}                                                                                   
+                        {% endif %}                                                
+                    {% endif %}                                            
+                {% endfor %}
+            {% endif %}
+
+            {% if request.GET.q %}
+                {% for proposition in propositions %}
+                    {% if not proposition.user.username == user.username %}
+                        {% if not proposition.user.is_superuser %}
+                            {% include 'pc/base/followings.html' %}
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% comment %}
             {% for proposition in propositions %}
                 {% if not proposition.user in followings %}
                     {% if not proposition.user.username == user.username %}
@@ -91,16 +238,43 @@
                         {% endif %}
                     {% endif %}
                 {% endif %}
-            {% endfor %}
 
+
+                {% if request.GET.q %}
+                    {% if not proposition.user.username == user.username %}
+                        {% if not proposition.user.is_superuser %}
+                            {% include 'pc/base/followings.html' %}
+                        {% endif %}
+                    {% endif %}
+                {% endif %}
+            {% empty %}
+            <div class="text-center">
+                <h5 style="color:gray">{% block noone %}Personne n'a ce nom d'utilisateur{% endblock %}</h5>
+            </div>
+            {% endfor %}
+        {% endcomment %}
             <a href="{% url 'profil:profil' user.username %}">
                 <button class="btn btn-success col-12 mb-2 mt-4">
-                        Profile
+                       {% block profil %} Profil {% endblock %}
                 </button>
           </a>
+
+            <!--message-->
+            <form action="" id="team-message" class="mt-4">
+                <div class="team-message-head p-2 mt-4">
+                    <h2> {% block massage_title %} Comment trouvez-vous Kichichi? {% endblock %} </h2>
+                </div>
+                {% csrf_token %}
+                <textarea name="message" id="kichichi-message" class="form-control" cols="30" rows="10"></textarea>
+                <button type="submit" class="btn btn-success mt-2"> {% block send_message %} Envoyer {% endblock %}</button>
+            </form> 
+            <!--end message-->
         </div>
         <!--fin du troisième-->
     </div>
+    {% if dreamteam %}
+        {% include 'pc/base/chat.html' %}
+    {% endif %}
 
 
     <script src="{% static 'js/pc/interface/user.js' %}"></script>

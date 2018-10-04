@@ -1,7 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b8067d55-8839-4418-b420-f10674fe7bf2" name="Default Changelist" comment="" />
+    <list default="true" id="b8067d55-8839-4418-b420-f10674fe7bf2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/kichichi/shortcuts.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kichichistatic/css/bases/pc/chat.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kichichistatic/js/pc/standard/chat.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kichichistatic/principles/signals.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/pc/base/chat.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/debug.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dreamteam/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/dreamteam/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dreamteam/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/dreamteam/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dreamteam/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/dreamteam/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dreamteam/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/dreamteam/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interface/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/interface/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interface/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/interface/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kichichi/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/kichichi/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kichichi/shorcuts.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/kichichi/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/kichichi/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kichichistatic/css/pc/interface/user.css" beforeDir="false" afterPath="$PROJECT_DIR$/kichichistatic/css/pc/interface/user.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kichichistatic/css/pc/profil/profil.css" beforeDir="false" afterPath="$PROJECT_DIR$/kichichistatic/css/pc/profil/profil.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kichichistatic/js/pc/interface/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/kichichistatic/js/pc/interface/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kichichistatic/js/pc/profil/profil.js" beforeDir="false" afterPath="$PROJECT_DIR$/kichichistatic/js/pc/profil/profil.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kichichistatic/js/pc/profil/soneprofil.js" beforeDir="false" afterPath="$PROJECT_DIR$/kichichistatic/js/pc/profil/soneprofil.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kichichistatic/js/pc/registration/anonymous.js" beforeDir="false" afterPath="$PROJECT_DIR$/kichichistatic/js/pc/registration/anonymous.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mediafiles/Publication/2018/09/24/Maroon_5_-_Girls_Like_You__cover_by_J.Fla_.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mediafiles/Publication/2018/09/24/The_Score_-_Stronger.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/profil/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/profil/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profil/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/profil/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/publication/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/publication/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/cdn/cdn.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/cdn/cdn.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pc/base/followings.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pc/base/followings.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pc/base/nav.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pc/base/nav.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pc/fr/interface/user.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pc/fr/interface/user.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pc/fr/profil/profil.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pc/fr/profil/profil.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pc/fr/profil/soneprofil.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pc/fr/profil/soneprofil.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pc/fr/registration/anonymous.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pc/fr/registration/anonymous.html" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -12,77 +52,81 @@
     <session id="1121142042">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="7" />
+          <entry key="project.closed" value="16" />
           <entry key="project.open.time.113" value="1" />
           <entry key="project.open.time.152" value="1" />
           <entry key="project.open.time.168" value="1" />
-          <entry key="project.open.time.18" value="1" />
-          <entry key="project.open.time.33" value="1" />
+          <entry key="project.open.time.18" value="2" />
+          <entry key="project.open.time.195" value="1" />
+          <entry key="project.open.time.215" value="1" />
+          <entry key="project.open.time.33" value="2" />
           <entry key="project.open.time.38" value="1" />
           <entry key="project.open.time.40" value="2" />
-          <entry key="project.open.time.51" value="1" />
-          <entry key="project.open.time.54" value="2" />
+          <entry key="project.open.time.41" value="2" />
+          <entry key="project.open.time.43" value="1" />
+          <entry key="project.open.time.49" value="1" />
+          <entry key="project.open.time.51" value="2" />
+          <entry key="project.open.time.53" value="1" />
+          <entry key="project.open.time.54" value="3" />
+          <entry key="project.open.time.59" value="1" />
           <entry key="project.open.time.66" value="1" />
+          <entry key="project.open.time.67" value="1" />
           <entry key="project.open.time.72" value="1" />
+          <entry key="project.open.time.74" value="1" />
           <entry key="project.open.time.76" value="1" />
-          <entry key="project.opened" value="14" />
+          <entry key="project.open.time.87" value="1" />
+          <entry key="project.open.time.91" value="1" />
+          <entry key="project.opened" value="30" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="css" value="7" />
-          <entry key="html" value="22" />
-          <entry key="js" value="20" />
-          <entry key="py" value="36" />
+          <entry key="css" value="14" />
+          <entry key="html" value="48" />
+          <entry key="js" value="35" />
+          <entry key="py" value="88" />
           <entry key="txt" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CSS" value="7" />
-          <entry key="HTML" value="22" />
-          <entry key="JavaScript" value="20" />
+          <entry key="CSS" value="14" />
+          <entry key="HTML" value="48" />
+          <entry key="JavaScript" value="35" />
           <entry key="PLAIN_TEXT" value="4" />
-          <entry key="Python" value="36" />
+          <entry key="Python" value="88" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="css" value="669" />
-          <entry key="html" value="2972" />
-          <entry key="js" value="3735" />
-          <entry key="py" value="4665" />
+          <entry key="css" value="1822" />
+          <entry key="dummy" value="1" />
+          <entry key="html" value="7313" />
+          <entry key="js" value="4829" />
+          <entry key="py" value="10699" />
           <entry key="txt" value="292" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="CSS" value="669" />
-          <entry key="HTML" value="2972" />
-          <entry key="JavaScript" value="3735" />
-          <entry key="PLAIN_TEXT" value="292" />
-          <entry key="Python" value="4665" />
+          <entry key="CSS" value="1822" />
+          <entry key="HTML" value="7313" />
+          <entry key="JavaScript" value="4829" />
+          <entry key="PLAIN_TEXT" value="293" />
+          <entry key="Python" value="10699" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dreamteam/models.py">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/pc/fr/interface/user.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="321">
-              <caret line="27" column="38" lean-forward="true" selection-start-line="27" selection-start-column="38" selection-end-line="27" selection-end-column="38" />
-              <folding>
-                <element signature="e#0#28#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="278">
+              <caret line="222" column="44" selection-start-line="222" selection-start-column="44" selection-end-line="222" selection-end-column="44" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/dreamteam/migrations/0003_auto_20180928_1226.py">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -95,59 +139,69 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>q</find>
+      <find>poster</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/account/validator.py" />
-        <option value="$PROJECT_DIR$/kichichi/redirection.py" />
-        <option value="$PROJECT_DIR$/kichichi/shorcuts.py" />
-        <option value="$PROJECT_DIR$/kichichistatic/js/pc/fr/registration/anonymous.js" />
-        <option value="$PROJECT_DIR$/requirements.txt" />
-        <option value="$PROJECT_DIR$/templates/cdn/cdn.html" />
-        <option value="$PROJECT_DIR$/kichichistatic/css/pc/registration/anonymous.css" />
         <option value="$PROJECT_DIR$/translation/registration/fr.txt" />
-        <option value="$PROJECT_DIR$/account/admin.py" />
-        <option value="$PROJECT_DIR$/account/urls.py" />
         <option value="$PROJECT_DIR$/templates/translation/registration/en.txt" />
-        <option value="$PROJECT_DIR$/kichichistatic/js/pc/registration/anonymous.js" />
         <option value="$PROJECT_DIR$/templates/pc/en/registration/anonymous.html" />
-        <option value="$PROJECT_DIR$/templates/pc/fr/registration/anonymous.html" />
-        <option value="$PROJECT_DIR$/account/views.py" />
         <option value="$PROJECT_DIR$/translation/interface/fr.txt" />
-        <option value="$PROJECT_DIR$/kichichistatic/css/pc/interface/user.css" />
         <option value="$PROJECT_DIR$/kichichistatic/css/bases/pc/publication.css" />
         <option value="$PROJECT_DIR$/templates/pc/base/js_publication.html" />
         <option value="$PROJECT_DIR$/kichichistatic/js/pc/interface/interface.js" />
         <option value="$PROJECT_DIR$/kichichistatic/js/pc/interface/p.js" />
         <option value="$PROJECT_DIR$/kichichistatic/js/pc/interface/brouillon.js" />
         <option value="$PROJECT_DIR$/kichichistatic/js/pc/interface/bit.js" />
-        <option value="$PROJECT_DIR$/account/models.py" />
         <option value="$PROJECT_DIR$/kichichistatic/js/pc/standard/appreciation.js" />
-        <option value="$PROJECT_DIR$/templates/pc/base/followings.html" />
         <option value="$PROJECT_DIR$/templates/pc/base/publication.html" />
-        <option value="$PROJECT_DIR$/interface/urls.py" />
         <option value="$PROJECT_DIR$/kichichistatic/js/pc/standard/follow.js" />
-        <option value="$PROJECT_DIR$/interface/views.py" />
-        <option value="$PROJECT_DIR$/kichichi/urls.py" />
-        <option value="$PROJECT_DIR$/templates/pc/fr/interface/user.html" />
         <option value="$PROJECT_DIR$/publication/urls.py" />
-        <option value="$PROJECT_DIR$/publication/views.py" />
-        <option value="$PROJECT_DIR$/kichichistatic/css/bases/pc/nav.css" />
+        <option value="$PROJECT_DIR$/kichichistatic/js/pc/standard/nav.js" />
+        <option value="$PROJECT_DIR$/kichichi/urls.py" />
+        <option value="$PROJECT_DIR$/dreamteam/admin.py" />
+        <option value="$PROJECT_DIR$/kichichistatic/css/pc/profil/profil.css" />
+        <option value="$PROJECT_DIR$/kichichi/settings.py" />
+        <option value="$PROJECT_DIR$/kichichistatic/js/pc/profil/soneprofil.js" />
+        <option value="$PROJECT_DIR$/interface/urls.py" />
         <option value="$PROJECT_DIR$/templates/pc/base/nav.html" />
         <option value="$PROJECT_DIR$/kichichistatic/js/pc/interface/user.js" />
-        <option value="$PROJECT_DIR$/kichichistatic/js/pc/standard/nav.js" />
-        <option value="$PROJECT_DIR$/kichichistatic/css/pc/profil/profil.css" />
-        <option value="$PROJECT_DIR$/kichichistatic/js/pc/profil/profil.js" />
-        <option value="$PROJECT_DIR$/templates/pc/fr/profil/profil.html" />
+        <option value="$PROJECT_DIR$/templates/pc/base/followings.html" />
+        <option value="$PROJECT_DIR$/kichichi/shorcuts.py" />
         <option value="$PROJECT_DIR$/templates/pc/fr/profil/soneprofil.html" />
-        <option value="$PROJECT_DIR$/kichichistatic/js/pc/profil/soneprofil.js" />
-        <option value="$PROJECT_DIR$/profil/views.py" />
+        <option value="$PROJECT_DIR$/kichichi/shortcuts.py" />
         <option value="$PROJECT_DIR$/profil/urls.py" />
-        <option value="$PROJECT_DIR$/kichichi/settings.py" />
+        <option value="$PROJECT_DIR$/profil/views.py" />
+        <option value="$PROJECT_DIR$/kichichistatic/css/bases/pc/nav.css" />
+        <option value="$PROJECT_DIR$/templates/cdn/cdn.html" />
+        <option value="$PROJECT_DIR$/kichichistatic/principles/signals.js" />
+        <option value="$PROJECT_DIR$/kichichistatic/css/bases/pc/chat.css" />
+        <option value="$PROJECT_DIR$/dreamteam/urls.py" />
         <option value="$PROJECT_DIR$/dreamteam/models.py" />
+        <option value="$PROJECT_DIR$/templates/pc/base/chat.html" />
+        <option value="$PROJECT_DIR$/dreamteam/views.py" />
+        <option value="$PROJECT_DIR$/templates/pc/fr/registration/anonymous.html" />
+        <option value="$PROJECT_DIR$/kichichistatic/js/pc/registration/anonymous.js" />
+        <option value="$PROJECT_DIR$/templates/pc/base/abs.html" />
+        <option value="$PROJECT_DIR$/interface/views.py" />
+        <option value="$PROJECT_DIR$/kichichistatic/css/pc/interface/user.css" />
+        <option value="$PROJECT_DIR$/kichichistatic/js/pc/standard/chat.js" />
+        <option value="$PROJECT_DIR$/kichichistatic/js/pc/profil/profil.js" />
+        <option value="$PROJECT_DIR$/account/models.py" />
+        <option value="$PROJECT_DIR$/account/views.py" />
+        <option value="$PROJECT_DIR$/account/admin.py" />
+        <option value="$PROJECT_DIR$/account/urls.py" />
+        <option value="$PROJECT_DIR$/templates/pc/fr/profil/profil.html" />
+        <option value="$PROJECT_DIR$/publication/views.py" />
+        <option value="$PROJECT_DIR$/templates/pc/fr/interface/user.html" />
       </list>
     </option>
   </component>
@@ -164,7 +218,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -172,21 +225,21 @@
               <item name="kichichi" type="b2602c69:ProjectViewProjectNode" />
               <item name="kichichi" type="462c0819:PsiDirectoryNode" />
             </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope">
+        <subPane subId="Scope 'Default Changelist'; set:Default Changelist; class com.intellij.packageDependencies.ChangeListScope">
+          <expand>
             <path>
-              <item name="kichichi" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kichichi" type="462c0819:PsiDirectoryNode" />
-              <item name="account" type="462c0819:PsiDirectoryNode" />
+              <item name="kichichi" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
             </path>
             <path>
-              <item name="kichichi" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kichichi" type="462c0819:PsiDirectoryNode" />
-              <item name="dreamteam" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="kichichi" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kichichi" type="462c0819:PsiDirectoryNode" />
-              <item name="dreamteam" type="462c0819:PsiDirectoryNode" />
-              <item name="migrations" type="462c0819:PsiDirectoryNode" />
+              <item name="kichichi" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="templates" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
           </expand>
           <select />
@@ -196,15 +249,16 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="SearchEverywhereHistoryKey" value="poster&#9;null&#9;null" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\masuaku tenda\kichichi\account" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\masuaku tenda\kichichi" />
       <recent name="C:\Users\masuaku tenda\kichichi\templates" />
       <recent name="C:\Users\masuaku tenda\kichichi\kichichistatic\js\pc" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\masuaku tenda\kichichi\account" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -234,6 +288,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20535715" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -254,152 +309,17 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
-    <layout-to-restore>
-      <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.20535715" />
-      <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="0" visible="true" weight="0.48608837" />
-      <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="2" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Python Console" order="3" />
-      <window_info anchor="bottom" id="Message" order="4" />
-      <window_info anchor="bottom" id="Find" order="5" />
-      <window_info anchor="bottom" id="Run" order="6" />
-      <window_info anchor="bottom" id="Debug" order="7" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="10" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-    </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/kichichi/redirection.py" />
-    <entry file="file://$PROJECT_DIR$/account/validator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="70" column="8" lean-forward="true" selection-start-line="70" selection-start-column="8" selection-end-line="70" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/mobile/fr/registration/anonymous.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/requirements.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/cdn/cdn.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="34" lean-forward="true" selection-start-line="5" selection-start-column="34" selection-end-line="5" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/account/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="39" selection-start-line="12" selection-start-column="39" selection-end-line="12" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/translation/registration/fr.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="59" lean-forward="true" selection-start-line="14" selection-start-column="59" selection-end-line="14" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kichichistatic/css/pc/registration/anonymous.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="77" selection-start-line="77" selection-end-line="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kichichi/shorcuts.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="23" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/account/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="54" selection-start-line="18" selection-start-column="54" selection-end-line="18" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/pc/en/registration/anonymous.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="73" selection-start-line="19" selection-start-column="73" selection-end-line="19" selection-end-column="73" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/translation/registration/en.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" selection-start-line="2" selection-end-line="16" selection-end-column="73" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/account/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="22" column="34" selection-start-line="22" selection-start-column="34" selection-end-line="22" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/translation/interface/fr.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="41" selection-start-line="1" selection-start-column="41" selection-end-line="1" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kichichistatic/css/pc/interface/user.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="348">
-          <caret line="51" column="1" selection-start-line="51" selection-start-column="1" selection-end-line="51" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/pc/base/js_publication.html" />
     <entry file="file://$PROJECT_DIR$/kichichistatic/js/pc/interface/interface.js" />
     <entry file="file://$PROJECT_DIR$/kichichistatic/js/pc/interface/p.js" />
     <entry file="file://$PROJECT_DIR$/kichichistatic/js/pc/interface/brouillon.js" />
-    <entry file="file://$PROJECT_DIR$/templates/pc/fr/registration/anonymous.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="152" column="23" selection-start-line="152" selection-start-column="23" selection-end-line="152" selection-end-column="93" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kichichistatic/js/pc/registration/anonymous.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="3" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/interface/models.py">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/account/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="104" selection-start-line="104" selection-end-line="104" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/kichichistatic/js/pc/interface/bit.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -415,24 +335,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/interface/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/kichichistatic/css/bases/pc/publication.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="348">
           <caret line="54" selection-start-line="54" selection-end-line="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kichichi/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="18" column="45" selection-start-line="18" selection-start-column="45" selection-end-line="18" selection-end-column="45" />
         </state>
       </provider>
     </entry>
@@ -443,140 +349,270 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/pc/base/nav.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kichichistatic/css/bases/pc/nav.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
-          <caret line="19" selection-start-line="19" selection-end-line="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/kichichistatic/js/pc/standard/nav.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/kichichistatic/css/pc/profil/profil.css">
+    <entry file="file://$PROJECT_DIR$/dreamteam/migrations/0003_auto_20180928_1226.py" />
+    <entry file="file://$PROJECT_DIR$/account/migrations/0003_auto_20180928_1212.py" />
+    <entry file="file://$PROJECT_DIR$/dreamteam/admin.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="348">
-          <caret line="82" column="1" selection-start-line="82" selection-start-column="1" selection-end-line="82" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kichichistatic/js/pc/interface/user.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kichichistatic/js/pc/standard/appreciation.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="348">
-          <caret line="153" column="2" selection-start-line="153" selection-start-column="2" selection-end-line="153" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/publication/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="88" column="4" selection-start-line="88" selection-start-column="4" selection-end-line="88" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/pc/fr/interface/user.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="75" selection-start-line="75" selection-end-line="75" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/pc/base/followings.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="10" column="5" lean-forward="true" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kichichistatic/js/pc/standard/follow.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="331">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kichichistatic/js/pc/profil/soneprofil.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="33" selection-start-line="33" selection-end-line="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/pc/fr/profil/soneprofil.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="44" column="74" selection-start-line="44" selection-start-column="74" selection-end-line="44" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/pc/fr/profil/profil.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="108" selection-start-line="108" selection-end-line="108" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kichichistatic/js/pc/profil/profil.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="348">
-          <caret line="345" selection-start-line="345" selection-end-line="345" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="60" selection-start-line="60" selection-end-line="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/profil/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="16" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/profil/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="244" column="24" selection-start-line="244" selection-start-column="24" selection-end-line="244" selection-end-column="24" />
+        <state relative-caret-position="68">
+          <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/kichichi/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
-          <caret line="44" column="14" selection-start-line="44" selection-start-column="14" selection-end-line="44" selection-end-column="14" />
+          <caret line="150" column="24" selection-start-line="150" selection-start-column="24" selection-end-line="150" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kichichistatic/js/pc/standard/appreciation.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="348">
+          <caret line="105" lean-forward="true" selection-start-line="105" selection-end-line="105" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kichichistatic/css/pc/profil/profil.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="331">
+          <caret line="85" column="17" selection-start-line="85" selection-start-column="17" selection-end-line="85" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kichichistatic/js/pc/profil/soneprofil.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="84" selection-start-line="84" selection-end-line="84" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/pc/fr/profil/soneprofil.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="46" column="118" selection-start-line="46" selection-start-column="118" selection-end-line="46" selection-end-column="118" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/profil/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="19" column="39" lean-forward="true" selection-start-line="19" selection-start-column="39" selection-end-line="19" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kichichi/shortcuts.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="14" column="11" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/profil/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="257">
+          <caret line="260" column="36" selection-start-line="260" selection-start-column="36" selection-end-line="260" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kichichistatic/css/bases/pc/nav.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="22" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/pc/base/nav.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="21" lean-forward="true" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/cdn/cdn.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kichichistatic/principles/signals.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dreamteam/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="15" column="30" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kichichi/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="20" column="50" selection-start-line="20" selection-start-column="50" selection-end-line="20" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dreamteam/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="92" column="58" selection-start-line="92" selection-start-column="58" selection-end-line="92" selection-end-column="58" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dreamteam/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="27" column="38" lean-forward="true" selection-start-line="27" selection-start-column="38" selection-end-line="27" selection-end-column="38" />
+        <state relative-caret-position="308">
+          <caret line="25" column="28" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/pc/base/chat.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="39" column="56" selection-start-line="39" selection-start-column="56" selection-end-line="39" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/mobile/fr/registration/anonymous.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kichichistatic/js/pc/registration/anonymous.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="263">
+          <caret line="156" column="59" selection-start-line="156" selection-start-column="59" selection-end-line="156" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kichichistatic/js/pc/interface/user.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="314">
+          <caret line="143" selection-start-line="143" selection-end-line="143" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/pc/en/registration/anonymous.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/pc/fr/registration/anonymous.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="110" column="34" selection-start-line="110" selection-start-column="34" selection-end-line="110" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/pc/base/followings.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/pc/base/abs.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="41" column="42" selection-start-line="41" selection-start-column="42" selection-end-line="41" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kichichistatic/js/pc/standard/follow.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1955">
+          <caret line="115" column="22" lean-forward="true" selection-start-line="115" selection-start-column="22" selection-end-line="115" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kichichistatic/css/bases/pc/chat.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="62" column="4" lean-forward="true" selection-start-line="62" selection-start-column="4" selection-end-line="62" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kichichistatic/css/pc/interface/user.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="229">
+          <caret line="41" column="26" selection-start-line="41" selection-start-column="26" selection-end-line="41" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kichichistatic/js/pc/standard/chat.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="85" column="6" selection-start-line="85" selection-start-column="6" selection-end-line="85" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kichichistatic/js/pc/profil/profil.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="271">
+          <caret line="73" column="80" selection-start-line="73" selection-start-column="80" selection-end-line="73" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/account/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="132" column="31" selection-start-line="132" selection-start-column="31" selection-end-line="132" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/account/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="218" column="36" lean-forward="true" selection-start-line="218" selection-start-column="36" selection-end-line="218" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/account/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="24" column="36" selection-start-line="24" selection-start-column="36" selection-end-line="24" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/account/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="13" column="36" lean-forward="true" selection-start-line="13" selection-start-column="36" selection-end-line="13" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/publication/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="216" column="37" selection-start-line="216" selection-start-column="37" selection-end-line="216" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/pc/fr/profil/profil.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="59" selection-start-line="59" selection-end-line="59" />
           <folding>
-            <element signature="e#0#28#0" expanded="true" />
+            <element signature="n#style#0;n#h5#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dreamteam/migrations/0003_auto_20180928_1226.py">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/templates/pc/fr/interface/user.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="222" column="44" selection-start-line="222" selection-start-column="44" selection-end-line="222" selection-end-column="44" />
+        </state>
+      </provider>
     </entry>
   </component>
 </project>

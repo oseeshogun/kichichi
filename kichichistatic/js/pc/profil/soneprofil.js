@@ -34,7 +34,7 @@ $('#follow_form').submit(function(e){
 
         },
         error: function (json){
-            console.log(json)
+          
         },
     })
 
@@ -230,7 +230,6 @@ function loadpublication(s, l, u){
         },
         error:function(error){
 
-            console.log(error)
         }
     })
 }
@@ -239,7 +238,39 @@ function loadpublication(s, l, u){
 
 
 
+$('#dreamteam_demande').submit(function(e){
+    e.preventDefault()
 
+        $.ajax({
+        method:'POST',
+        async: true,
+        url: '/dreamteam/demande/',
+        data:$(this).serialize(),
+        success: function (data){
+            if (data.add){
+                if (lang == 'fr'){
+                    $('#dreamtean_btn').text('Annuler la demande')
+                } else if (lang == 'en'){
+                    $('#dreamtean_btn').text('Cancel request')
+                }
+                
+            }
+            if (data.remove){
+                if (lang == 'fr'){
+                    $('#dreamtean_btn').text('Ajouter à la dream team')
+                } else if (lang == 'en'){
+                    $('#dreamtean_btn').text('Add to dream team')
+                }
+                
+            }
+
+        },
+        error: function (json){
+           
+        },
+    })
+
+})
 
 
 

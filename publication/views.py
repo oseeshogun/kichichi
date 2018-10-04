@@ -4,7 +4,7 @@ from django.http import JsonResponse, Http404, HttpResponse
 from django.core.files.storage import FileSystemStorage
 from django.conf import settings
 from datetime import datetime
-
+from django.db.models import Q
 
 # Create your views here.
 def tokoss(request):
@@ -69,6 +69,10 @@ def get_publication(request):
     limit = int(limit)
     q = request.GET.get('q')
     publications = Publication.objects.filter(public=True)[start:limit]
+    if q != 'None':
+        publications = Publication.objects.filter(
+            Q(text__icontains=q) | Q(file__icontains=q)
+        )[start:limit]
     size = False
     audio = False
     video = False
@@ -81,6 +85,9 @@ def get_publication(request):
     is_him = False
     if Publication.objects.filter(public=True)[start:limit + 1].count() <= 1:
         nomore = True
+    if q != 'None':
+        if Publication.objects.filter(Q(text__icontains=q) | Q(file__icontains=q))[start:limit + 1].count() <= 1:
+            nomore = True
     if publications.count() != 0:
         for publication in publications:
             if publication.is_file():
@@ -103,6 +110,9 @@ def get_publication(request):
                 comment = publication_comment.comment
             if request.user.username == publication.publisher.username:
                 is_him = True
+            ads = False
+            if start % 5 == 0:
+                ads = True
             response = {
                 'id': publication.id,
                 'profil': publication.publisher.profile.profil.url,
@@ -121,6 +131,7 @@ def get_publication(request):
                 'comments_count': comments_count,
                 'is_file':publication.is_file(),
                 'is_him':is_him,
+                'ads':ads,
             }
             return JsonResponse(response)
     return JsonResponse(response)
@@ -177,24 +188,33 @@ def poster(request):
     if request.method == 'GET':
         raise Http404
     if request.method == 'POST' and request.FILES['file']:
+        fs = FileSystemStorage()
+        m = 0.0
+        for pub in Publication.objects.all():
+            m += pub.file.size / 1050030
+        if m > 400:
+            f = 0
+            pub_to_delete = {}
+            for pub in Publication.objects.all().order_by('launched'):
+                f += pub.file.size / 1050030
+                if not f <= 100:
+                    f -= pub.file.size / 1050030
+                    break
+                pub_to_delete[pub.id] = pub
+            for item in dict:
+                fs.delete(item.file)
+                item.delete()
         text = request.POST.get('text')
         type = request.POST.get('type')
         public = request.POST.get('publication_group')
         file = request.FILES['file']
-        fs = FileSystemStorage()
         year = datetime.now().year
         month = datetime.now().month
         day = datetime.now().day
         filename = fs.save('Publication/' + str(year) + '/' + str(month) + '/' + str(day) + '/{0}'.format(file.name), file)
         uploaded_file_url = fs.url(filename)
         new_publication = Publication.objects.create(publisher=request.user, text=text, file=filename)
-        if public == 'public':
-            new_publication.public = True
-        elif public == 'followers':
-            new_publication.for_followers = True
-        else:
-            group = User_groups.objects.get(user=request.user, name=public)
-            new_publication.viewers_group = group
+        new_publication.public = True
         new_publication.save()
         return redirect('profil:profil', user_name=user_name)
     return HttpResponse('Failed')

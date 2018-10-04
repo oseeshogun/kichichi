@@ -17,7 +17,7 @@ $('body').on('submit', '#following_p form', function(e){
 
         },
         error: function (json){
-            console.log(json)
+           
         },
     })
 })

@@ -42,6 +42,26 @@ $(".notifications div").hover(
     }
 )
 
+$('body').on('submit','#in_no', function(e){
+    e.preventDefault();
+    var username = document.getElementById('profil_username').innerText
+    $.ajax({
+        method: "POST",
+        async: true,
+        url: '/dreamteam/no/',
+        data:$(this).serialize(),
+        success: function (data){
+        var notification_id = data.id
+          $('#notification'+notification_id).hide()
+          $("#notification_number").text(data.number)
+        },
+        error: function (json){
+            
+        },
+    })
+
+
+})
 
 $('.notifications form').submit(function(e){
     e.preventDefault();
@@ -57,7 +77,7 @@ $('.notifications form').submit(function(e){
           $("#notification_number").text(data.number)
         },
         error: function (json){
-            console.log(json)
+            
         },
     })
 })
@@ -74,7 +94,7 @@ $(window).scroll(function(){
     if ($(window).scrollTop() ==  $(document).height() - $(window).height()){
 
         if (!maxreached){
-            loadpublication(start, limit);
+            loadpublication(start, limit, q);
         }
     }
 
@@ -88,7 +108,11 @@ $(window).scroll(function(){
 
 
 
-function loadpublication(s, l){
+function loadpublication(s, l, q){
+
+    if (nomore == 'True'){
+        return false;
+    }
 
     if (maxreached){
         return false;
@@ -96,7 +120,7 @@ function loadpublication(s, l){
 
     $.ajax({
         method: 'GET',
-        url: '/publication/get/?start='+s+'&limit='+l,
+        url: '/publication/get/?start='+s+'&limit='+l+'&q='+q,
         success: function(publication){
 
             start = start + 1
@@ -105,6 +129,29 @@ function loadpublication(s, l){
 
 
             var output = ''
+
+            if (publication.ads){
+                output += '<div class="ads publication_block mt-4 mb-4">'
+                output += '<div class="publication_header">'
+                output += '<h2>Πthon 1.0.2</h2>'
+                if (lang == 'fr'){
+                    output += '<h6>Logiciel en téléchargement gratuit</h6><hr>'
+                } else if (lang == 'en'){
+                    output += '<h6>Download the sofware for free</h6><hr>'
+                }
+                if (lang == 'fr'){
+                    output += '<a href="http://infteamcd.pythonanywhere.com" target="_blank">Cliquez ici pour télécharger</a>'
+                } else if (lang == 'en'){
+                    output += '<a href="http://infteamcd.pythonanywhere.com" target="_blank">Clic here to download</a>'
+                }
+                
+                output += '</div>'
+                output += '<div class="publication_file">'
+                output += '<img src="/static/images/stat.gif" class="form-control mt-2" alt="">'
+                output += '</div>'
+                output += '</div>'
+            }
+
             output += '<link rel="stylesheet" href="/static/css/bases/pc/publication.css">'
             output += '<div class="container publication_block mb-4 new_publication" id="publication_container'+publication.id+'">'
             output += '<div class="publication_header">'
@@ -233,7 +280,6 @@ function loadpublication(s, l){
         },
         error:function(error){
 
-            console.log(error)
         }
     })
 
@@ -246,7 +292,26 @@ function loadpublication(s, l){
 
 
 
-
+$('#team-message').submit(function(e){
+    e.preventDefault();
+    $.ajax({
+        method:'POST',
+        url:'/accounts/message/',
+        async:true,
+        data:$(this).serialize(),
+        success:function(data){
+            if (lang == 'fr'){
+                $('#team-message').html('<h1 class="jumbotron display-4">Votre message a été envoyé</h1>')
+            } else if (lang == 'en'){
+                $('#team-message').html('<h1 class="jumbotron display-4">Your message has been sent</h1>')
+            }
+            
+        },
+        error:function(data){
+           
+        },
+    })
+})
 
 
 

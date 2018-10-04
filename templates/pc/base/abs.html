@@ -1,0 +1,51 @@
+{% load static %}
+
+<style>
+    #following_p img{
+        max-height: 40px;
+        border-radius: 10%;
+    }
+</style>
+
+{% if request.GET.abonnements %}
+<div id="following_p" class="mt-4">
+    <div class="sub_following_p row col-12" id="proposition{{ proposition.profile.id }}">
+            <img src="{{ proposition.profile.profil.url }}" class="col-3" alt="">
+            <span class="col-3" ><a href="/profile/{{ proposition }}">{{ proposition }}</a></span>
+            <span class="col-3"></span>
+            <form action="{{ proposition.profile.id }}" class="col-3 text-left" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="profil_username" value="{{ proposition }}">
+                <input type="hidden" class="type{{ proposition.profile.id }}" name="type" value="follow">
+                {% if not proposition in followings %}
+                    <button type="submit" id="prop_btn{{ proposition.profile.id }}" class="btn btn-success">{% if lang == 'fr' %}Suivre{% else %}Follow{% endif %}</button>
+                {% else %}
+                    <button type="submit" id="prop_btn{{ proposition.profile.id }}" class="btn btn-success">{% if lang == 'fr' %}Ne plus suivre{% else %}Unfollow{% endif %}</button>
+                {% endif %}
+            </form>
+    </div>
+</div>
+{% endif %}
+
+{% if request.GET.abonnees %}
+
+
+<div id="following_p" class="mt-4">
+    <div class="sub_following_p row col-12" id="proposition{{ proposition.user.profile.id }}">
+            <img src="{{ proposition.user.profile.profil.url }}" class="col-3" alt="">
+            <span class="col-3" ><a href="/profile/{{ proposition }}">{{ proposition }}</a></span>
+            <span class="col-3"></span>
+            <form action="{{ proposition.user.profile.id }}" class="col-3 text-left" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="profil_username" value="{{ proposition }}">
+                <input type="hidden" class="type{{ proposition.user.profile.id }}" name="type" value="follow">
+                {% if not proposition.user in followings %}
+                    <button type="submit" id="prop_btn{{ proposition.user.profile.id }}" class="btn btn-success">{% if lang == 'fr' %}Suivre{% else %}Follow{% endif %}</button>
+                {% else %}
+                    <button type="submit" id="prop_btn{{ proposition.user.profile.id }}" class="btn btn-success">{% if lang == 'fr' %}Ne plus suivre{% else %}Unfollow{% endif %}</button>
+                {% endif %}
+            </form>
+    </div>
+</div>
+
+{% endif %}

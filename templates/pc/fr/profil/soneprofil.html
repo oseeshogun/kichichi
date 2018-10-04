@@ -34,20 +34,46 @@
 
     <div class="container col-8 offset-2 mt-4">
         <div class="col-8 offset-2 row text-center">
-            <form action="" class="col-6 mt-4" >
+            <form action="" class="col-6 mt-4" id="dreamteam_demande">
                 {% csrf_token %}
                 <input type="hidden" name="username" value="{{ user.username }}">
-                <button type="submit" class="btn btn-secondary">Ajouter à la Dream Team</button>
+                <input type="hidden" name="id" value="{{ user.id }}">
+                {% if user in request.user.profile.demande.all %}
+                <button type="submit" class="btn btn-secondary" id="dreamtean_btn">{% block cancel_request %}Annuler la demande{% endblock %}</button>
+                {% else %}
+                        {% if user == partenaire %}
+                            <button type="submit" class="btn btn-secondary" id="dreamtean_btn">{% block retirer_request %}Se rétirer du dream team{% endblock %}</button>
+                        {% else %}
+                            <button type="submit" class="btn btn-secondary" id="dreamtean_btn">{% block add_dreamteam %}Ajouter à la dream team{% endblock %}</button>
+                        {% endif %}
+                {% endif %}
             </form>
             <form action="" class="col-6 mt-4" id="follow_form">
                 {% csrf_token %}
                 <input type="hidden" name="username" value="{{ user.username }}">
-                <button type="submit" class="btn btn-success" id="prop_btn">Suivre</button>
+                {% if user in request.user.following.followings.all %}
+                <button type="submit" class="btn btn-success" id="prop_btn">{% block unfollow %}Ne plus suivre{% endblock %}</button>
+                {% else %}
+                <button type="submit" class="btn btn-success" id="prop_btn">{% block follow %}Suivre{% endblock %}</button>
+                {% endif %}
             </form>
         </div>
-    </div>
 
-    <script>
+
+    <!--nombre d'abonné et d'abonnement-->
+     <div class="count_follow container row p-4 text-center">
+         <div class="followers offset-2 col-4">
+            <h5>{% block follower %}Abonnées{% endblock %}</h5>
+            <p class="display-4">{{ abonnees }}</p>
+        </div>
+        <div class="followers col-4">
+                <h5>{% block following %}Abonnements{% endblock %}</h5>
+                <p class="display-4">{{ followings_count }}</p>
+        </div>
+    </div>
+    <!--fin nombre d'abonné et d'abonnement-->
+
+ <script>
         var username = '{{ user.username }}';
     </script>
     {% if nomore == True %}
@@ -61,6 +87,33 @@
         </script>
     {% endif %}
 
+        <script>
+            var lang = '{{ lang }}';
+        </script>
+        <!--publications-->
+        <div class="col-8 offset-2" id="publications">
+
+             {% for publication in publications %}
+                {% include 'pc/base/publication.html' %}
+
+                {% if nomore != 'None' %}
+                    <h5 class="text-center mt-4" style="color:gray" >{% block nomore_publication %}Il n'a plus de publication{% endblock %}</h5>
+                {% endif %}
+            {% empty %}
+                <h1 class="text-center mt-4 mb-4" style="color:gray" >{% block empty_publication %}Aucune publication{% endblock %}</h1>
+            {% endfor %}
+
+
+        </div>
+        <!--fin publications-->
+    </div>
+
+
+
+
+    {% if dreamteam %}
+        {% include 'pc/base/chat.html' %}
+    {% endif %}
 
 
 
