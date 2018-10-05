@@ -1,57 +1,26 @@
 $(document).ready(function(){
 
-var start = 2;
-var limit = 3;
-
-
-var maxreached = false;
-
-$(window).scroll(function(){
-    if ($(window).scrollTop() ==  $(document).height() - $(window).height()){
-        if (!maxreached){
-                get_publictions(start, limit,q);
-            }
-        }
-});
-
-
-
-$("#login-form").submit(function(e){
-    e.preventDefault()
-
-    $.ajax({
-
-        method: "POST",
-        url: '/accounts/login/',
-        async: true,
-        data:$(this).serialize(),
-        success: function (data){
-            if (data.success){
-                location = '/'
-            } else if (data.error){
-                if (!data.erroronpassword){
-                    $("#username").css('background-color', 'darkkhaki')
-                }
-                $("#password").css('background-color', 'darkkhaki')
-            }
-        },
-        error: function (json){
-            $("#username").css('background-color', 'darkkhaki')
-            $("#password").css('background-color', 'darkkhaki')
-        },
-
-    })
+$('body').on('click', '#logintabbtn', function(){
+    $('.logintab').css('display','initial')
+    $('.signuptab').css('display','none')
+    if (lang == 'fr'){
+        $('.registration-tabs').html('<button class="btn col-12" id="signuptabbtn">Voulez-vous vous enregistrer?</button>')
+    } else if (lang == 'en'){
+        $('.registration-tabs').html('<button class="btn col-12" id="signuptabbtn">Do you want to sign up?</button>')
+    }
+    
 })
 
-$("#username").on('keydown', function(){
-    $("#username").css('background-color', 'white')
+$('body').on('click','#signuptabbtn', function(){
+    $('.logintab').css('display','none')
+    $('.signuptab').css('display','initial')
+    if (lang == 'fr'){
+        $('.registration-tabs').html('<button class="btn col-12" id="logintabbtn">Voulez-vous vous connecter?</button>')
+    } else if (lang == 'en'){
+        $('.registration-tabs').html('<button class="btn col-12" id="logintabbtn">Do you want to log in?</button>')
+    }
+    
 })
-$("#password").on('keydown', function(){
-    $("#password").css('background-color', 'white')
-})
-
-
-
 
 
 $("#signup-form").submit(function(e){
@@ -127,7 +96,55 @@ $("#signup-form").submit(function(e){
     })
 })
 
+$("#login-form").submit(function(e){
+    e.preventDefault()
 
+    $.ajax({
+
+        method: "POST",
+        url: '/accounts/login/',
+        async: true,
+        data:$(this).serialize(),
+        success: function (data){
+            if (data.success){
+                location = '/'
+            } else if (data.error){
+                if (!data.erroronpassword){
+                    $("#login-username").css('background-color', 'darkkhaki')
+                }
+                $("#login-password").css('background-color', 'darkkhaki')
+            }
+        },
+        error: function (json){
+            $("#login-username").css('background-color', 'darkkhaki')
+            $("#login-password").css('background-color', 'darkkhaki')
+        },
+
+    })
+})
+
+$("#login-username").on('keydown', function(){
+    $("#login-username").css('background-color', 'white')
+})
+$("#login-password").on('keydown', function(){
+    $("#login-password").css('background-color', 'white')
+})
+
+
+
+var start = 2;
+var limit = 3;
+
+
+var maxreached = false;
+
+$(window).scroll(function(){
+    if ($(window).scrollTop() ==  $(document).height() - $(window).height()){
+        if (!maxreached){
+                get_publictions(start, limit,q);
+            }
+        }
+});
 
 
 function get_publictions(s, l, q) {
@@ -144,12 +161,11 @@ function get_publictions(s, l, q) {
             start = start + 1
             limit = limit + 1
 
-            var output = '';
-
+            var output = ''
 
             if (publication.ads){
-                output += '<div class="ads publication_block mt-4 mb-4">'
-                output += '<div class="publication_header">'
+                output += '<div class="ads publication_block mt-4 mb-4 bg-white">'
+                output += '<div class="publication_header pl-2">'
                 output += '<h2>Πthon 1.0.2</h2>'
                 if (lang == 'fr'){
                     output += '<h6>Logiciel en téléchargement gratuit</h6><hr>'
@@ -169,7 +185,7 @@ function get_publictions(s, l, q) {
                 output += '</div>'
             }
 
-            output += '<section class="publication-block" >';
+            output += '<section class="publication-block mt-4 mb-4 pt-2 pb-1" >';
             output += '<div class="container mt-4 mb-4" id="publication-'+publication.id+'">'
             output += '<div class="publication-header">'
             output += '<img src="'+ publication.profil +'" class="publication_profil ml-4 mr-4" alt="">'
@@ -198,7 +214,7 @@ function get_publictions(s, l, q) {
             }
             output += '<hr>'
             output += '<div class="publication-appreciation mt-4 container row">'
-            output += '<div class="col-4" id="tokoss">'
+            output += '<div class="col-12 text-center" id="tokoss">'
             output += '<img src="/static/images/tokoss/tokoss.png" id="tokoss_img{{ publication.id }}" alt="">'
             output += '<span id="tokoss{{ publication.id }}" class="ml-2" >'+publication.likes_number+'  Tokoss  </span>'
             output += '</div>'
@@ -217,7 +233,9 @@ function get_publictions(s, l, q) {
                         output += '<div class="col-8 offset-2 text-center container"><h6>No more public publications</h6></div>'
                     }
                 }
+                maxreached = true;
             }
+            
             $('.publications').append(output)
         },
         error:function(error){
@@ -225,5 +243,33 @@ function get_publictions(s, l, q) {
         }
     })
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 })

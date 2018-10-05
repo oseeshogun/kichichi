@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html lang="{{ lang }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% include 'cdn/cdn.html' %}
+    <link rel="stylesheet" href="{% static 'css/mobile/registration/anonymous.css' %}">
+    <title>Kichichi</title>
+</head>
+<body>
+    <!--Begin navbar -->
+    <!--le login form est contenue sur ce nav-->
+    <nav class="navbar navbar-success bg-success fixed-top">
+        <div class="header">
+            <a href="{% url 'account:anonymous' lang %}">
+                <h1>Kichichi</h1>
+            </a>
+        </div>
+    </nav>
+    <!-- end navbar -->
+    <!-- end navbar -->
+
+    <!-- registration tabs -->
+    <div class="registration-tabs">
+        <button class="btn col-12" id="signuptabbtn">{% block btnconnect %}Voulez-vous vous enregistrer?{% endblock %}</button>
+    </div>
+    <div class="tabs">
+        <div class="logintab">
+            <!--connection form-->
+            <form action="" id="login-form" class="container p-4">
+                {% csrf_token %}
+                <input type="hidden" name="langue" value="{{ lang }}">
+                <input type="text" name="username" id="login-username" class="form-control mb-4" placeholder="{% block login-username-placeholder %}Nom d'utillisateur{% endblock %}">
+                <input type="password" name="password" id="login-password" class="form-control mb-4" placeholder="{% block login-password-placeholder %}Mot de passe{% endblock %}">
+                <button type="submit" class="btn btn-success">{% block login-submit %}Connexion{% endblock %}</button>
+            </form>
+            <div class="terms text-center">
+                <p>{% block langue-link1 %}<a href="/accounts/anonymous/en/" class="mt-4 text-center" >Go to English</a>{% endblock %}</p>
+            </div>
+        </div>
+        <!-- signup form -->
+        <div class="signuptab">
+            <form action="" id="signup-form" class="container p-4">
+                {% csrf_token %}
+               
+                <input type="text" name="username" id="signup-username" class="form-control mb-4" placeholder="{% block placeholder_signup_username %}Nom d'utilisateur{% endblock %}">
+                <input type="text" name="contact" id="signup-contact" class="form-control mb-4" placeholder="{% block placeholder_signup_contact %}Numéro cellulaire ou adresse e-mail{% endblock %}">
+                <input type="password" name="password1" id="password1" class="form-control mb-4" placeholder="{% block placeholder_signup_password1 %}Mot de passe{% endblock %}">
+                <input type="password" name="password2" id="password2" class="form-control mb-4" placeholder="{% block placeholder_signup_password2 %}Répéter le mot de passe{% endblock %}">
+                <button type="submit" class="btn btn-success">{% block signup-submit %}Entrer dans le jeu{% endblock %}</button>
+            </form>
+            <div class="container text-center form-group row" id="alert_group">
+                <p id="signup_username_label" class="signup_alert text-center ml-4 text-red"></p>
+            </div>
+            <div class="terms text-center">
+                <p>{% block langue-link %}<a href="/accounts/anonymous/en/" class="mt-4 text-center" >Go to English</a>{% endblock %}</p>
+            </div>
+        </div>
+    </div>
+    <!-- end registration tabs -->
+
+    <!-- publications -->
+    <div class="publications pb-4">
+        <!-- recherche -->
+        <form action="" method="get" class="form-q">
+            <div class="form-group container p-4">
+                <input type="text" name="q" id="q" class="form-control mb-4" value="{{ request.GET.q }}" placeholder="{% block placeholder_q %}Rechercher...{% endblock %}">
+            </div>
+        </form>
+        <!-- end recherche -->
+
+
+        {% for publication in publications %}
+    <section class="publication-block mt-4 mb-4 pt-2 pb-1" >
+            <div class="container mt-4 mb-4" id="publication-{{ publication.id }}">
+                <div class="publication-header">
+                    <img src="{{ publication.profil.url }}" class="publication_profil ml-4 mr-4" alt="">
+                    <span class="publication-username mr-4">{{ publication.publisher }}</span>
+                </div>
+            </div>
+
+            <div class="publication_title pl-4">
+                <blockquote class="mt-4">
+                    {{ publication.text }}
+                    <br>
+                    {% if publication.file %}
+                        {% if lang == 'fr' %}
+                            <strong>Taille: {{ publication.size }} Mo</strong>
+                        {% elif lang == 'en' %}
+                            <strong>Size: {{ publication.size }} Mo</strong>
+                        {% endif %}
+                    {% endif %}
+                </blockquote>
+                <hr>
+            </div>
+
+            <div class="publication-file">
+                {% if '.mp3' in publication.file.url or '.aac' in publication.file.url or '.MP3' in publication.file.url or '.AAC' in publication.file.url %}
+                    <audio src="{{ publication.file.url }}" class="form-control mt-2" controls preload="metadata"></audio>
+                {% elif '.mp4' in publication.file.url or '.MP4' in publication.file.url  %}
+                    <video src="{{ publication.file.url }}" class="form-control mt-2" controls preload="metadata"></video>
+                {% else %}
+                    <img src="{{ publication.file.url }}" class="form-control mt-2" alt="">
+                {% endif %}
+            </div>
+
+            <hr>
+
+            <div class="publication-appreciation mt-4 text-center container row">
+                <div class="col-12" id="tokoss">
+                    <img src="{% static 'images/tokoss/tokoss.png' %}" id="tokoss_img{{ publication.id }}" alt="">
+                    <span id="tokoss{{ publication.id }}" class="ml-2" >{{ publication.likes_number }} Tokoss  </span>
+                </div>
+            </div>
+            
+
+            
+        </section>
+            {% if forloop.last %}
+                {% if finished %}
+                    <div class="col-8 offset-2 text-center container">
+                        <h6>{% block finished_publications_q %}Plus de nouvelles publications publiques pour cette recherche{% endblock %}</h6>
+                    </div>
+                {% endif %}
+            {% endif %}
+        {% empty %}
+            {% if request.GET.q %}
+                <div class="col-8 offset-2 text-center container">
+                <h6>{% block empty_publications_q %}Aucun resultat{% endblock %}</h6>
+            </div>
+            {% else %}
+                <div class="col-8 offset-2 text-center container">
+                <h6>{% block empty_publications %}Plus de nouvelles publications publiques{% endblock %}</h6>
+            </div>
+            {% endif %}
+
+    {% endfor %}
+    </div>
+
+    
+    <!-- end publications -->
+
+    <script>
+        var lang = '{{ lang }}';
+        {% if request.GET.q %}
+        var q = '{{ request.GET.q }}'
+        {% else %}
+        var q = 'None'
+        {% endif %}
+    </script>
+    <script src="{% static 'js/mobile/registration/anonymous.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+body {
+    padding: 0px;
+    margin: 0px;
+    padding-top: 70px;
+}
+
+/*
+this is for the kichichi header in the nav
+*/
+nav h1{
+    color: azure;
+    font-family: Pacifico, Galada, 'Times New Roman', Times, serif;
+}
+
+/* 
+this if for the regidtrations buttons 
+*/
+
+.registration-tabs button{
+    border-radius: 0;
+    outline: none;
+    cursor: pointer;
+    background-color: #d7d4d4;
+    border-bottom: 0.1px solid gray;
+    font-family: Pacifico, Galada, 'Times New Roman', Times, serif;
+}
+.registration-tabs button:hover{
+    background-color: #d7d4d4;
+}
+#logintabbtn{
+    border-right: 0.1px solid gray;
+}
+
+.signuptab{
+    display: none;
+}
+
+.signup_alert{
+    color: red;
+}
+form button, input::-webkit-input-placeholder{
+    font-family: Galada, 'Times New Roman', Times, serif;
+}
+
+/*
+ this is for publications 
+ */
+
+ .publications{
+    background-color: whitesmoke;
+}
+.publication-block{
+    background-color: white;
+}
+.publication-header img{
+    max-width: 35px;
+    border-radius: 20%;
+}
