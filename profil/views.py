@@ -164,7 +164,10 @@ def change_profil(request):
         user_profile = Profile.objects.get(user=request.user)
         user_profile.profil = filename
         user_profile.save()
-        return redirect('profil:profil', user_name=user_name)
+        if device_type(request) == 'pc':
+            return redirect('profil:profil', user_name=user_name)
+        if device_type(request) == 'mobile':
+            return redirect('mobile:mainmobile', user_name=user_name)
     return redirect('profil:profil', user_name=user_name)
 
 
@@ -229,9 +232,10 @@ def getpublication(request):
                 'comments_count': comments_count,
                 'is_file': publication.is_file(),
                 'is_him': is_him,
+                'tonot':False,
             }
             return JsonResponse(response)
-    return JsonResponse(response)
+    return JsonResponse({'tonot':True})
 
 
 def updateprofil(request):
@@ -249,7 +253,10 @@ def updateprofil(request):
     if birthday:
         profile.birthday = birthday
     profile.save()
-    return redirect('profil:profil', user_name=user_name)
+    if device_type(request) == 'pc':
+            return redirect('profil:profil', user_name=user_name)
+    if device_type(request) == 'mobile':
+        return redirect('mobile:mainmobile', user_name=user_name)
 
 
 

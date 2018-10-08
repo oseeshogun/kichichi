@@ -190,7 +190,7 @@ $(window).scroll(function(){
 
 
 
-function loadpublication(s, l, u){
+function loadpublicationprofil(s, l, u){
 
     if (nopublication){
         return false;
@@ -260,6 +260,7 @@ function loadpublication(s, l, u){
                 output += '<div class="col-6" id="delete'+ publication.id +'" class="delete_publication">'
                 output += '<form action="/publication/delete/" id="delete-form" method="post">'
                 output += '<input type="hidden" name="csrfmiddlewaretoken" value="'+ csrftoken +'" />'
+                output += '<input type="hidden" name="id"  value="'+ publication.id +'">'
                 output += '<button type="submit"><img src="/static/images/no.png" alt=""><span class="ml-4 mr-2">'
                 if (lang == 'fr'){
                     output += 'Supprimer'
@@ -311,9 +312,9 @@ function loadpublication(s, l, u){
             output += '<input type="hidden" name="publication_id"  value="'+ publication.id +'">'
             output += '<input type="hidden" name="type" class="'+ publication.id +'"  value="follow">'
             if (lang == 'fr'){
-                output += '<input type="text" id="input_comment{{ publication.id }}" class="form-control" name="comment" placeholder="Ecrivez un commentaire..." maxlength="70" required>'
+                output += '<input type="text" id="input_comment'+ publication.id +'" class="form-control" name="comment" placeholder="Ecrivez un commentaire..." maxlength="70" required>'
             } else if (lang == 'en'){
-                output += '<input type="text" id="input_comment{{ publication.id }}" class="form-control" name="comment" placeholder="Wriet a comment..." maxlength="70" required>'
+                output += '<input type="text" id="input_comment'+ publication.id +'" class="form-control" name="comment" placeholder="Wriet a comment..." maxlength="70" required>'
             }
             output += '</form>'
             output += '</div>'

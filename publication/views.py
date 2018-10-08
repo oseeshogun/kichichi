@@ -5,6 +5,7 @@ from django.core.files.storage import FileSystemStorage
 from django.conf import settings
 from datetime import datetime
 from django.db.models import Q
+from kichichi.shortcuts import *
 
 # Create your views here.
 def tokoss(request):
@@ -34,7 +35,10 @@ def tokoss(request):
         publisher = publication.publisher
         notification = str(utilisateur.username) + " a aimé votre publication ''" + publication.text + "''"
         if not publisher == request.user:
-            Notification.objects.get_or_create(user=publisher, notification=notification)
+            if publisher.profile.langue == 'fr':
+                Notification.objects.get_or_create(user=publisher, notification=notification)
+            else:
+                Notification.objects.get_or_create(user=publisher, notification=str(utilisateur.username) + " liked your publication ''" + publication.text + "''")
         if actual_likes == 100:
             notification = "Votre publication ''" + publication.text + "'' a atteint 100 tokoss, toutes nos félicitations"
             Notification.objects.get_or_create(user=publisher, notification=notification)
@@ -44,7 +48,12 @@ def tokoss(request):
 def delete_publication(request):
     publication_id = request.POST.get('id')
     Publication.objects.get(pk=int(publication_id)).delete()
-    return redirect('profil:profil', user_name=request.user.username)
+    user_name = request.user.username
+    device = device_type(request)
+    if device == 'pc':
+        return redirect('profil:profil', user_name=user_name)
+    if device == 'mobile':
+        return redirect('mobile:mainmobile', user_name=user_name)
 
 def inappropriate(request):
     if request.method == 'GET':
@@ -59,6 +68,14 @@ def inappropriate(request):
     publication.inappropriate_clickers.add(user)
     publication.save()
     data = {'success':True}
+    fs = FileSystemStorage()
+    if publication.inappropriate_clicks >= 3:
+        if publication.publisher.profile.langue == "fr":
+            Notification.objects.create(user=publication.publisher, notification='Votre publication '+ publication.text +' a été supprimé puisqu\'elle est jugée inappropriée plusieurs fois')
+        else:
+            Notification.objects.create(user=publication.publisher, notification='Your publication '+ publication.text +' has been judged inappropriate severals times')
+        fs.delete(publication.file)
+        publication.delete()
     return JsonResponse(data)
 
 def get_publication(request):
@@ -90,6 +107,8 @@ def get_publication(request):
             nomore = True
     if publications.count() != 0:
         for publication in publications:
+            if request.user in publication.inappropriate_clickers.all():
+                break
             if publication.is_file():
                 size = publication.size()
             if publication.file.name.lower().endswith('.mp3') or publication.file.name.lower().endswith('.aac'):
@@ -103,7 +122,7 @@ def get_publication(request):
                 liker = True
             if request.user.username == publication.publisher.username:
                 owner = True
-            publication_comment = Comments.objects.filter(publication=publication).last()
+            publication_comment = Comments.objects.filter(publication=publication).first()
             comments_count = Comments.objects.filter(publication=publication).count()
             if publication_comment != None:
                 comment_by = publication_comment.comment_by.username
@@ -111,7 +130,7 @@ def get_publication(request):
             if request.user.username == publication.publisher.username:
                 is_him = True
             ads = False
-            if start % 5 == 0:
+            if start % 8 == 0:
                 ads = True
             response = {
                 'id': publication.id,
@@ -132,9 +151,10 @@ def get_publication(request):
                 'is_file':publication.is_file(),
                 'is_him':is_him,
                 'ads':ads,
+                'tonot':False,
             }
             return JsonResponse(response)
-    return JsonResponse(response)
+    return JsonResponse({'tonot':True})
 
 
 def addcomment(request):
@@ -151,8 +171,12 @@ def addcomment(request):
     comment_number = publication.comments_set.count()
     publisher = publication.publisher
     if not publisher == request.user:
-        notification = str(user.username) + " a commenté votre publication ''" + publication.text +"''"
-        Notification.objects.get_or_create(user=publisher, notification=notification)
+        if publisher.profile.langue == 'fr':
+            notification = str(user.username) + " a commenté votre publication ''" + publication.text +"''"
+            Notification.objects.get_or_create(user=publisher, notification=notification)
+        else:
+            notification = str(user.username) + " has commented your publication ''" + publication.text +"''"
+            Notification.objects.get_or_create(user=publisher, notification=notification)
     username = request.user.username
     data = {
         'success': True,
@@ -185,6 +209,7 @@ def getcomments(request):
 
 def poster(request):
     user_name = request.user.username
+    device = device_type(request)
     if request.method == 'GET':
         raise Http404
     if request.method == 'POST' and request.FILES['file']:
@@ -202,6 +227,10 @@ def poster(request):
                     break
                 pub_to_delete[pub.id] = pub
             for item in dict:
+                if item.publisher.profile.langue == 'fr':
+                    Notification.objects.create(user=item.publisher, notification='Votre publication '+ item.text +' a été récalée pour la gestion d\'espace de stockage pour la version beta, profitez-en pour poster plus de contenus.')
+                else:
+                     Notification.objects.create(user=item.publisher, notification='Your publication '+ item.text +' was deleted for the space storage management in the beta version, take the profit of it for publishing more content.')
                 fs.delete(item.file)
                 item.delete()
         text = request.POST.get('text')
@@ -216,5 +245,8 @@ def poster(request):
         new_publication = Publication.objects.create(publisher=request.user, text=text, file=filename)
         new_publication.public = True
         new_publication.save()
-        return redirect('profil:profil', user_name=user_name)
+        if device == 'pc':
+            return redirect('profil:profil', user_name=user_name)
+        if device == 'mobile':
+            return redirect('mobile:mainmobile', user_name=user_name)
     return HttpResponse('Failed')

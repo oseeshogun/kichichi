@@ -60,7 +60,13 @@ def main(request, user_name):
         'partenaire':partenaire,
         'chats':chats,
     }
-    return render(request, '{0}/{1}/interface/user.html'.format(device, lang), context)
+    user_name = request.user.username
+    device = device_type(request)
+    if device == 'pc':
+        return render(request, '{0}/{1}/interface/user.html'.format(device, lang), context)
+    if device == 'mobile':
+        return redirect('mobile:mainmobile', user_name=user_name)
+    
 
 def delete_notification(request):
     if request.method == 'GET':

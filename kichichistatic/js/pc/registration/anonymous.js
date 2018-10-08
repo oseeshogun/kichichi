@@ -149,7 +149,7 @@ function get_publictions(s, l, q) {
 
             if (publication.ads){
                 output += '<div class="ads publication_block mt-4 mb-4">'
-                output += '<div class="publication_header">'
+                output += '<div class="publication_header pl-2">'
                 output += '<h2>Πthon 1.0.2</h2>'
                 if (lang == 'fr'){
                     output += '<h6>Logiciel en téléchargement gratuit</h6><hr>'

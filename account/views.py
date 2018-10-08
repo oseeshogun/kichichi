@@ -22,6 +22,8 @@ def home(request):
     lang = 'fr'
     if request.user.is_authenticated:
         username = request.user.username
+        if device_type(request) == 'mobile':
+            return redirect('mobile:mainmobile', user_name=username)
         #if the user is authenticated, he's redirect to the interface
         return redirect('interface:main', user_name=username)
     #if the user is unknown, he's is redirect to the anonymous page with french like default language
@@ -131,7 +133,7 @@ def signup_user(request):
             notification = "Bienvenue sur Kichichi, nous sommes ravis de vous savoir connecter"
             Notification.objects.get_or_create(user=new_user, notification=notification)
         else:
-            notification = """This is a beta version, There are features to completed,
+            notification = """This is a beta version, There are features to complete,
                                             for the time being, we
                                             beg you to notify each remark, critic or mistake on Kichichi, Thank you. 
                                             Mbula Mboma Gilberto (development team)"""
@@ -174,7 +176,7 @@ def get_publications(request):
             image = publication.file.url
         likes_number = publication.likes_number
         ads = False
-        if start % 5 == 0:
+        if start % 8 == 0:
             ads = True
         response = {
             'id': publication.id,

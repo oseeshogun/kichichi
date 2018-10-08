@@ -24,14 +24,4 @@ $('body').on('submit', '#following_p form', function(e){
 
 
 
-
-
-
-
-
-
-
-
-
-
 })

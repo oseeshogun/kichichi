@@ -85,3 +85,14 @@ this is for the user information
 #demande img{
     max-width: 50px;
 }
+
+
+.upload_span{
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+.upload_span_profil{
+    word-break: break-all;
+    word-wrap: break-word;
+}

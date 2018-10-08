@@ -19,4 +19,6 @@ urlpatterns = [
     path('profile/', include('profil.urls')),
 
     path('dreamteam/', include('dreamteam.urls')),
+
+    path('mobile/', include('mobile.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

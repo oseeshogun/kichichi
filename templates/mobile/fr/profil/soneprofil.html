@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html lang="{{ lang }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% include 'cdn/cdn.html' %}
+    <link rel="stylesheet" href="{% static 'css/mobile/profil/soneprofil.css' %}">
+    <title>Kichichi</title>
+</head>
+<body>
+      <!-- Begin navbar -->
+      <nav class="navbar hidenav bg-success fixed-top">
+        <div class="header" id="nav_header">
+            <a href="/" id="link_home">
+                    <h1>
+                      Kichichi
+                    </h1>
+            </a>
+        </div>
+        <div class="logout-div">
+            <a href="/accounts/logout/">
+                <img src="{% static 'images/download_w.png' %}" alt="">
+            </a>
+        </div>
+        <div class="search_class col-12 mt-2">
+            <form action="/mobile/{{user.username}}/" method="get">
+                <input type="search" class="form-control" name="q" placeholder="{% if lang  == 'fr' %}Rechercher...{% elif lang == 'en' %}Search...{% endif %}" id="search_input" value="{{ request.GET.q }}" required>
+            </form>
+        </div>
+    </nav>
+<!-- end navbar -->
+
+
+    <!-- profil-section -->
+    <div id="profil-section">
+        <!--cover and header-->
+        <div id="header" class="pt-4 pb-4">
+            <div class="container text-center col-xs-6 offset-xs-3">
+
+                <img src="{{ user.profile.profil.url  }}" id="profil_img"alt="">
+            </div>
+
+
+            <h2 class="text-center mt-4" id="profil_username"style="color:white">{{ user.username }}</h2>
+
+        </div>
+    <!--End cover and header-->
+
+
+    <div class="container mt-4">
+        <div class="row text-center">
+            <form action="" class="col-6 mt-4" id="dreamteam_demande">
+                {% csrf_token %}
+                <input type="hidden" name="username" value="{{ user.username }}">
+                <input type="hidden" name="id" value="{{ user.id }}">
+                {% if user in request.user.profile.demande.all %}
+                <button type="submit" class="btn btn-secondary" id="dreamtean_btn">{% block cancel_request %}Annuler la demande{% endblock %}</button>
+                {% else %}
+                        {% if user == partenaire %}
+                            <button type="submit" class="btn btn-secondary" id="dreamtean_btn">{% block retirer_request %}Se rétirer du dream team{% endblock %}</button>
+                        {% else %}
+                            <button type="submit" class="btn btn-secondary" id="dreamtean_btn">{% block add_dreamteam %}Ajouter à la dream team{% endblock %}</button>
+                        {% endif %}
+                {% endif %}
+            </form>
+            <form action="" class="col-6 mt-4" id="follow_form">
+                {% csrf_token %}
+                <input type="hidden" name="username" value="{{ user.username }}">
+                {% if user in request.user.following.followings.all %}
+                <button type="submit" class="btn btn-success" id="prop_btn">{% block unfollow %}Ne plus suivre{% endblock %}</button>
+                {% else %}
+                <button type="submit" class="btn btn-success" id="prop_btn">{% block follow %}Suivre{% endblock %}</button>
+                {% endif %}
+            </form>
+        </div>
+
+
+    <!--nombre d'abonné et d'abonnement-->
+     <div class="count_follow container row p-4 text-center">
+         <div class="followers col-6">
+            <h5>{% block follower %}Abonnées{% endblock %}</h5>
+            <p class="display-4">{{ abonnees }}</p>
+        </div>
+        <div class="followers col-6">
+                <h5>{% block following %}Abonnements{% endblock %}</h5>
+                <p class="display-4">{{ followings_count }}</p>
+        </div>
+    </div>
+    <!--fin nombre d'abonné et d'abonnement-->
+
+ <script>
+        var username = '{{ user.username }}';
+    </script>
+    {% if nomore == True %}
+        <script>
+            var nopublication = true;
+        </script>
+    {% else %}
+
+        <script>
+            var nopublication = false;
+        </script>
+    {% endif %}
+
+        <script>
+            var lang = '{{ lang }}';
+        </script>
+        <!--publications-->
+        <div class="" id="publications">
+
+             {% for publication in publications %}
+                
+<div class="container publication_block mb-4" id="publication_container{{ publication.id}}">
+        <div class="publication_header">
+    
+            <img src="{{ publication.profil.url }}" class="publication_profil ml-4 mr-4" alt="">
+            <span class="publication_username mr-4">{{ publication.publishedby }}</span>
+    
+        </div>
+        <div class="publication_title">
+            <blockquote class="mt-4">
+                {{ publication.text }}
+                <br>
+                {% if publication.file %}
+                    {% if lang == 'fr' %}
+                        <strong>Taille: {{ publication.size }} Mo</strong>
+                    {% else %}
+                        <strong>Size: {{ publication.size }} Mo</strong>
+                    {% endif %}
+                {% endif %}
+            </blockquote>
+            <hr>
+        </div>
+    
+        <div class="publication_quote">
+           {% if '.mp3' in publication.file.url or '.aac' in publication.file.url or '.MP3' in publication.file.url or '.AAC' in publication.file.url %}
+        <audio src="{{ publication.file.url }}" class="form-control mt-2" controls preload="metadata"></audio>
+            {% elif '.mp4' in publication.file.url or '.MP4' in publication.file.url  %}
+            <video src="{{ publication.file.url }}" class="form-control mt-2" controls preload="metadata"></video>
+            {% else %}
+            <img src="{{ publication.file.url }}" class="form-control mt-2" alt="">
+            {% endif %}
+        </div>
+        <hr>
+        <div class="publication_appreciation mt-4 row">
+            <div class="col-12" id="tokoss">
+    
+                <form action="" class="" id="{{ publication.id }}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="publication_id"  value="{{ publication.id }}">
+                <button type="submit" class="ml-4 mr-2">
+                    {% if request.user in publication.likers.all %}
+                    <img src="{% static 'images/tokoss/tokoss.png' %}" id="tokoss_img{{ publication.id }}" alt="">
+                    {% else %}
+                    <img src="{% static 'images/tokoss/not_tokoss.png' %}" id="tokoss_img{{ publication.id }}" alt="">
+                    {% endif %}
+                </button>
+                <span id="tokoss{{ publication.id }}" >{{ publication.likes_number }} Tokoss  </span>
+            </form>
+    
+    
+            </div>
+    
+    
+    
+        </div>
+    
+        <div class="mt-4 title_notifications comment_header">
+               <span id="comment_count{{ publication.id }}" class="lire{{ publication.id }}" > {{ publication.comments_set.count }}   {% if lang == 'fr' %}commentaires {% else %} comments {% endif %}</span>
+        <div id="comments{{ publication.id }}" class="comments mt-2 mb-2">
+    
+            {% for comment in publication.comments_set.all %}
+    
+            {% if forloop.first %}
+    
+    
+    
+               <h6 id="comment_by{{ publication.id }}" ><strong>{{ comment.comment_by }}</strong></h6>
+    
+               <div class="mt-2 commentaire ml-4" id="comment_comment{{ publication.id }}" >
+                    {{ comment.comment }}
+                    <hr>
+               </div>
+                {% endif %}
+    
+            {% empty %}
+            <img src="" class="mr-4 comment_img" id="comment_img{{ publication.id }}" alt=""> <span id="comment_by{{ publication.id }}" ></span>
+               <div class="ml-4" id="comment_comment{{ publication.id }}" >
+    
+               </div>
+            {% endfor %}
+        </div>
+        <div class="commentaire">
+        <form action="" id="comment{{ publication.id }}"  class="mt-2" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="publication_id"  value="{{ publication.id }}">
+            <input type="hidden" name="type" class="{{ publication.id }}"  value="follow">
+            <input type="text" id="input_comment{{ publication.id }}" class="form-control" name="comment" placeholder="{% if lang == 'fr' %}Ecrivez un commentaire...{% else %}Write a comment...{% endif %}" maxlength="70" required>
+        </form>
+    </div>
+        </div>
+    </div>
+
+                {% if nomore != 'None' %}
+                    <h5 class="text-center mt-4" style="color:gray" >{% block nomore_publication %}Il n'a plus de publication{% endblock %}</h5>
+                {% endif %}
+            {% empty %}
+                <h1 class="text-center mt-4 mb-4" style="color:gray" >{% block empty_publication %}Aucune publication{% endblock %}</h1>
+            {% endfor %}
+
+
+        </div>
+        <!--fin publications-->
+    </div>            
+  
+    </div>
+    <!-- end profil-section -->
+    <script src="{% static 'js/mobile/profil/soneprofil.js' %}"></script>
+    <script src="{% static 'js/pc/standard/appreciation.js' %}"></script>
+    <script src="{% static 'js/pc/standard/follow.js' %}"></script>
+</body>
+</html>

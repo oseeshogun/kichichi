@@ -1,0 +1,19 @@
+<div class="prop ml-1 mr-1 p-2 text-center" id="following_p">
+    <div class="prop-profil text-center">
+        <img src="{{ demande.profile.profil.url }}" alt="">
+        <br>
+        <h6 class="mt-2" ><a href="">{{ demande }}</a></h6>
+    </div>
+    <style>
+    #dreamteam_demande button{
+        word-break: break-all;
+        word-wrap: break-word;
+    }
+    </style>
+    <form action="{{ demande.id }}" class="" id="dreamteam_demande">
+        {% csrf_token %}
+        <input type="hidden" name="username" value="{{ demande.username }}">
+        <input type="hidden" name="id" value="{{ demande.id }}">
+        <button type="submit" class="btn btn-secondary" id="dreamtean_btn{{ demande.id }}">{% if lang == 'fr' %}Annuler{% else %}Cancel{% endif %}</button>
+    </form>
+</div>

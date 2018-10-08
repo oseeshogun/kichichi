@@ -1,0 +1,99 @@
+{% extends 'mobile/fr/interface/user.html' %}
+
+
+{% block recent_notifications %}Recent notifications{% endblock %}
+
+{% block accept %}Accept{% endblock %}
+
+{% block no %}Refuse{% endblock %}
+
+{% block delete %}Delete{% endblock %}
+
+{% block no_note %} Your best friend has nothing to prevent you {% endblock %}
+
+{% block save_mynote %}Save{% endblock %}
+
+{% block builddreamteam %}  Build your dream team {% endblock %}
+
+{% block profil %} Profile {% endblock %}
+
+{% block massage_title %} How do you find Kichichi? {% endblock %}
+
+{% block send_message %} Send {% endblock %}
+
+{% block noone %}No one as this username{% endblock %}
+
+{% block placeholder_mynote %}Tell your best friend about an event, a news or whatever he must know or not forget.
+
+Actual note:
+{{ user.profile.note }}{% endblock %}
+
+
+
+
+
+
+
+
+
+{% block change_profil %} Change the profile{% endblock %}
+
+{% block save %}Save{% endblock %}
+
+{% block publication_header %}The world is waiting for your publication...{% endblock %}
+
+{% block title %}Title:{% endblock %}
+
+{% block post_viewers %}Who will see your publication ?{% endblock %}
+
+{% block select_post %}Select a file{% endblock %}
+
+{% block post_summit %}Post{% endblock %}
+
+{% block nomore_publication %}No more publication{% endblock %}
+
+{% block empty_publication %}You haven't published yet{% endblock %}
+
+{% block follower %}Followers{% endblock %}
+
+{% block following %}Followings{% endblock %}
+
+{% block phone_number %}Phone number: {%  endblock %}
+
+{% block towntitle %}Town: <span class="ml-4">{{ profile.town|default:'No town' }}</span>{% endblock %}
+
+{% block country %}Country: <span class="ml-4 mt-2 mb-4">{{ profile.country|default:'No country' }}</span>{% endblock %}
+
+{% block professiontitle %} Profession: <span class="ml-4">{{ profile.profession|default:'No profession' }}</span> {% endblock %}
+
+{% block birthdaytitle %}Birthday: <span class="ml-4">{{ profile.birthday|date:"SHORT_DATE_FORMAT"|default:'No birthday specified' }}</span>{% endblock %}
+
+{% block information_warning %}No one will see those informations.{% endblock %}
+
+{% block updateprofil %}Updated the profile{% endblock %}
+
+{% block town %}Your town{% endblock %}
+
+{% block profession %}Your profession{% endblock %}
+
+{% block tosave %}Update{% endblock %}
+
+{% block cancel %}Cancel{% endblock %}
+
+{% block m %} Male {% endblock %}
+
+{% block f %} Female {% endblock %}
+
+{% block viewfollowers %} My followers{% endblock %}
+
+{% block viewfollowings %}My followings{% endblock %}
+
+{% block no_followers %}No followers{% endblock %}
+
+{% block no_followings %}No followings{% endblock %}
+
+{% block ask_no_response %} Dream team requests{% endblock %}
+
+{% block cancel_request %}Cancel request{% endblock %}
+
+{% block logout %}Log out{% endblock %}

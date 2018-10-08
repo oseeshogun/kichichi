@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'publication',
     'interface',
     'dreamteam',
+    'mobile',
 ]
 
 CACHES = {

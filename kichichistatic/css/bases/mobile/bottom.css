@@ -1,0 +1,16 @@
+.fixed-bottom{
+    z-index: 10;
+    border-radius: 0%;
+    border: 0.1px solid gray;
+    border-bottom: unset;
+}
+.fixed-bottom .active{
+    background-color: gainsboro;
+}
+.fixed-bottom label:hover{
+    background-color: gainsboro;
+}
+.fixed-bottom img{
+    width: 30px;
+    height: 30px;
+}

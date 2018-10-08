@@ -1,0 +1,17 @@
+<div class="prop ml-1 mr-1 p-2 text-center" id="following_p">
+    <div class="prop-profil text-center">
+        <img src="{{ proposition.user.profile.profil.url }}" alt="">
+        <br>
+        <h6 class="mt-2" ><a href="">{{ proposition }}</a></h6>
+    </div>
+    <form action="{{ proposition.user.profile.id }}" class="mt-4 text-center" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="profil_username" value="{{ proposition }}">
+        <input type="hidden" class="type{{ proposition.user.profile.id }}" name="type" value="follow">
+        {% if not proposition.user in followings %}
+            <button type="submit" id="prop_btn{{ proposition.user.profile.id }}" class="btn btn-success">{% if lang == 'fr' %}Suivre{% else %}Follow{% endif %}</button>
+        {% else %}
+            <button type="submit" id="prop_btn{{ proposition.user.profile.id }}" class="btn btn-success">{% if lang == 'fr' %}Ne plus suivre{% else %}Unfollow{% endif %}</button>
+        {% endif %}
+    </form>
+</div>

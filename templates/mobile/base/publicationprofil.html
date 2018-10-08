@@ -1,0 +1,37 @@
+{% load static %}
+
+
+<div class="container publication_block mb-4" id="publication_container{{ publication.id}}">
+    <div class="publication_header">
+
+        <img src="{{ publication.profil.url }}" class="publication_profil ml-4 mr-4" alt="">
+        <span class="publication_username mr-4">{{ publication.publishedby }}</span>
+
+    </div>
+    <div class="publication_title">
+        <blockquote class="mt-4">
+            {{ publication.text }}
+            <br>
+            {% if publication.file %}
+                {% if lang == 'fr' %}
+                    <strong>Taille: {{ publication.size }} Mo</strong>
+                {% else %}
+                    <strong>Size: {{ publication.size }} Mo</strong>
+                {% endif %}
+            {% endif %}
+        </blockquote>
+        <hr>
+    </div>
+
+    <div class="publication_quote">
+       {% if '.mp3' in publication.file.url or '.aac' in publication.file.url or '.MP3' in publication.file.url or '.AAC' in publication.file.url %}
+    <audio src="{{ publication.file.url }}" class="form-control mt-2" controls preload="metadata"></audio>
+        {% elif '.mp4' in publication.file.url or '.MP4' in publication.file.url  %}
+        <video src="{{ publication.file.url }}" class="form-control mt-2" controls preload="metadata"></video>
+        {% else %}
+        <img src="{{ publication.file.url }}" class="form-control mt-2" alt="">
+        {% endif %}
+    </div>
+    <hr>
+
+</div>
